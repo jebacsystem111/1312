@@ -72,6 +72,7 @@
   }
 
   function renderGrid(filter = activeFilter) {
+    if (!grid) return;
     const filtersEl = $(".filters");
     if (filtersEl) filtersEl.hidden = PRODUCTS.length === 0;
     if (!PRODUCTS.length) {
@@ -84,6 +85,13 @@
       return;
     }
     grid.innerHTML = list.map(cardHTML).join("");
+  }
+
+  /* wyróżniony produkt na stronie głównej */
+  const spotlightEl = $("#spotlightProduct");
+  function renderSpotlight() {
+    if (!spotlightEl) return;
+    if (PRODUCTS.length) spotlightEl.innerHTML = cardHTML(PRODUCTS[0]);
   }
 
   $$(".chip").forEach((chip) =>
@@ -136,7 +144,7 @@
     badge.classList.add("pop");
   }
 
-  grid.addEventListener("click", (e) => {
+  document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-add]");
     if (!btn) return;
     const card = btn.closest(".card");
@@ -399,7 +407,7 @@
 
   /* ---------------- newsletter ---------------- */
   const newsForm = $("#newsletterForm");
-  newsForm.addEventListener("submit", (e) => {
+  if (newsForm) newsForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const email = $("#newsletterEmail");
     const note = $("#newsletterNote");
@@ -412,6 +420,31 @@
     note.className = "form-note";
     note.textContent = "Gotowe! Kod HALAYA10 właśnie leci na Twoją skrzynkę.";
     email.value = "";
+  });
+
+  /* ---------------- formularz kontaktowy ---------------- */
+  const contactForm = $("#contactForm");
+  if (contactForm) contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = $("#cName");
+    const email = $("#cEmail");
+    const msg = $("#cMsg");
+    const note = $("#contactNote");
+    let ok = true;
+    if (name.value.trim().length < 3) { ok = false; name.setAttribute("aria-invalid", "true"); }
+    else name.removeAttribute("aria-invalid");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) { ok = false; email.setAttribute("aria-invalid", "true"); }
+    else email.removeAttribute("aria-invalid");
+    if (msg.value.trim().length < 10) { ok = false; msg.setAttribute("aria-invalid", "true"); }
+    else msg.removeAttribute("aria-invalid");
+    if (!ok) {
+      note.textContent = "Uzupełnij poprawnie wszystkie pola.";
+      note.className = "form-note error";
+      return;
+    }
+    note.className = "form-note";
+    note.textContent = "Dziękujemy! Odpowiemy w ciągu godziny roboczej.";
+    contactForm.reset();
   });
 
   /* ---------------- menu mobilne ---------------- */
@@ -458,5 +491,6 @@
 
   /* ---------------- start ---------------- */
   renderGrid();
+  renderSpotlight();
   renderCart();
 })();
