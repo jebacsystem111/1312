@@ -19,13 +19,13 @@ const head = (title, desc) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=9">
+  <link rel="stylesheet" href="/styles.css?v=10">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
 
   <div class="announce" role="region" aria-label="Informacja o dostawie">
-    <p>Darmowa dostawa od 149 zł - świeża partia ube przylatuje z Luzon co dwa tygodnie</p>
+    <p>Darmowa dostawa od 149 zł - ube prosto z Luzon</p>
     <a href="/dostawa.html">Jak to działa</a>
   </div>
 
@@ -77,7 +77,7 @@ const footer = `  <footer class="site-footer">
           <img class="logo-img" src="/assets/logo-dark.png" alt="" width="92" height="96">
           <span class="logo-word" aria-hidden="true">UBE <em>UBE</em></span>
         </a>
-        <p>Fioletowe złoto z Filipin. Proszek z ube, świeże bulwy i przepisy - zbierane ręcznie na Luzon, pakowane w chłodzie, u Ciebie w 24 godziny.</p>
+        <p>Fioletowe złoto z Filipin. Proszek z ube, świeże bulwy i przepisy - zbierane ręcznie na Luzon, u Ciebie w 24 godziny.</p>
       </div>
       <nav class="footer-col" aria-label="Sklep">
         <h3>Sklep</h3>
@@ -183,7 +183,7 @@ const chromeEnd = `
           <legend>Dostawa</legend>
           <label class="radio-row">
             <input type="radio" name="shipping" value="kurier" data-cost="14.90" checked>
-            <span class="radio-label"><strong>Kurier chłodniczy</strong><span>jutro, 14,90 zł</span></span>
+            <span class="radio-label"><strong>Kurier</strong><span>jutro, 14,90 zł</span></span>
           </label>
           <label class="radio-row">
             <input type="radio" name="shipping" value="paczkomat" data-cost="11.90">
@@ -259,7 +259,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=9"></script>
+  <script src="/app.js?v=10"></script>
 </body>
 </html>
 `;
@@ -274,7 +274,7 @@ let shop = `
       <div class="wrap">
         ${breadcrumb([["/sklep.html", null]])}
         <h1 class="display reveal">Sklep</h1>
-        <p class="lead reveal">Wszystkie partie pakowane w chłodzie i wysyłane w 24 godziny. Darmowa dostawa od 149 zł.</p>
+        <p class="lead reveal">Wszystkie zamówienia pakujemy i wysyłamy w 24 godziny. Darmowa dostawa od 149 zł.</p>
       </div>
     </section>
 
@@ -297,11 +297,11 @@ let shop = `
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4 7l8-3 8 3-8 3-8-3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div><strong>Paczki w chłodzie</strong><span>przewiewny papier i suchy lód - fiolet nie blaknie</span></div>
+            <div><strong>Starannie pakowane</strong><span>szczelne puszki i przewiewny papier - fiolet nie blaknie</span></div>
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21c0-6 5-9 14-10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 21c2-5 6-8 11-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-            <div><strong>Świeże partie co 2 tygodnie</strong><span>prosto z plantacji doliny Pampanga</span></div>
+            <div><strong>Z Luzon</strong><span>plantacje doliny Pampanga, serce upraw ube</span></div>
           </li>
         </ul>
       </div>
@@ -381,11 +381,11 @@ let onas = `
         <div class="story-copy">
           <h2 class="display-sm">Fiolet, który nas <em>połączył</em></h2>
           <p>Ube to na Filipinach więcej niż składnik - to kolor niedzielnych deserów, ulicznych straganów i domów, w których zawsze pachnie wanilią. Fioletowy pochrzyn (Dioscorea alata) rośnie tam od ponad dwóch tysięcy lat.</p>
-          <p>Kupujemy wyłącznie od rodzinnych plantatorów z doliny Pampanga. Płacimy uczciwie, zbieramy ręcznie i pakujemy w chłodzie tak, żeby antocyjany - naturalny barwnik ube - dotarły do Ciebie w pełnej krasie.</p>
+          <p>Nasze ube pochodzi z doliny Pampanga na Luzon, gdzie fioletowy pochrzyn uprawia się od ponad dwóch tysięcy lat. Bulwy zbierane są ręcznie, a antocyjany - naturalny barwnik ube - dotrą do Ciebie w pełnej krasie.</p>
           <ul class="fact-ticket">
             <li><strong>2000 lat</strong><span>uprawy na Filipinach - ube jest starsze niż Manila</span></li>
             <li><strong>Antocyjany</strong><span>naturalny fiolet, bez barwników i aromatów</span></li>
-            <li><strong>Bezpośrednio od plantatorów</strong><span>uczciwe ceny skupu, zero pośredników</span></li>
+            <li><strong>Zbiór ręczny</strong><span>bulwa po bulwie, jak od dwóch tysięcy lat</span></li>
           </ul>
         </div>
       </div>
@@ -399,13 +399,13 @@ let onas = `
         <div class="values-grid">
           <div class="value">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-3-8-6-8-11a8 8 0 0 1 16 0c0 5-4 8-8 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <h3>Uczciwe ceny skupu</h3>
-            <p>Plantatorzy dostają więcej, niż dyktuje rynek w Manili. Bez tego fiolet szybko by zniknął z pól.</p>
+            <h3>Z Luzon</h3>
+            <p>Nasze ube pochodzi z plantacji doliny Pampanga, serca upraw fioletowego pochrzynu na Filipinach.</p>
           </div>
           <div class="value">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 7l8 4 8-4M12 11v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <h3>Transport w chłodzie</h3>
-            <p>Każda partia leci z Manili w kontrolowanej temperaturze i jest pakowana tego samego dnia, w którym dotrze.</p>
+            <h3>Zbiór ręczny</h3>
+            <p>Bulwy wykopywane i sortowane są ręcznie, tak jak na Luzon od pokoleń.</p>
           </div>
           <div class="value">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
@@ -416,7 +416,7 @@ let onas = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "o-nas.html"), head("O nas - ube ube | Fiolet, który nas połączył", "Historia sklepu ube ube: ube z rodzinnych plantacji doliny Pampanga, uczciwe ceny skupu, transport w chłodzie i zero barwników.") + onas + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "o-nas.html"), head("O nas - ube ube | Fiolet, który nas połączył", "Historia sklepu ube ube: ube z rodzinnych plantacji doliny Pampanga, zbiór ręczny i zero barwników.") + onas + footer + chromeEnd);
 
 // --- DOSTAWA ---
 active = "/dostawa.html";
@@ -426,7 +426,7 @@ let dostawa = `
       <div class="wrap">
         ${breadcrumb([["/dostawa.html", null]])}
         <h1 class="display reveal">Dostawa</h1>
-        <p class="lead reveal">Zamów do 12:00, a jutro fiolet będzie u Ciebie. Każda paczka jedzie w chłodzie.</p>
+        <p class="lead reveal">Zamów do 12:00, a jutro fiolet będzie u Ciebie.</p>
       </div>
     </section>
 
@@ -441,7 +441,7 @@ let dostawa = `
           <li>
             <span class="process-num" aria-hidden="true">2</span>
             <h3>Ube rusza w drogę</h3>
-            <p>Kurier chłodniczy dowozi w 24 godziny. Numer przesyłki dostajesz SMS-em i mailem.</p>
+            <p>Kurier dowozi w 24 godziny. Numer przesyłki dostajesz SMS-em i mailem.</p>
           </li>
           <li>
             <span class="process-num" aria-hidden="true">3</span>
@@ -456,13 +456,13 @@ let dostawa = `
               <tr><th>Opcja</th><th>Czas</th><th>Koszt</th></tr>
             </thead>
             <tbody>
-              <tr><td>Kurier chłodniczy</td><td>następny dzień roboczy</td><td class="num">14,90 zł</td></tr>
+              <tr><td>Kurier</td><td>następny dzień roboczy</td><td class="num">14,90 zł</td></tr>
               <tr><td>Paczkomat 24/7</td><td>1-2 dni robocze</td><td class="num">11,90 zł</td></tr>
               <tr><td>Odbiór osobisty (Warszawa, ul. Fioletowa 13)</td><td>pn-pt 9:00-17:00</td><td class="num">0 zł</td></tr>
             </tbody>
           </table>
         </div>
-        <p style="margin-top:20px">Zamówienia od <strong>149 zł</strong> wysyłamy za darmo kurierem chłodniczym.</p>
+        <p style="margin-top:20px">Zamówienia od <strong>149 zł</strong> wysyłamy za darmo kurierem.</p>
       </div>
     </section>
 
@@ -487,7 +487,7 @@ let dostawa = `
           </details>
           <details>
             <summary>Kiedy wysyłacie zamówienia?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
-            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem chłodniczym lub do paczkomatu. Świeże bulwy wysyłamy z partii, która właśnie przyleciała - jeśli najbliższy zbiór jest w drodze, poinformujemy Cię o terminie w mailu.</p>
+            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem lub do paczkomatu. Świeże bulwy wysyłamy z partii, która właśnie dotarła z Luzon - jeśli najbliższy zbiór jest w drodze, poinformujemy Cię o terminie w mailu.</p>
           </details>
           <details>
             <summary>Mogę użyć proszku zamiast świeżego ube?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
@@ -507,7 +507,7 @@ let dostawa = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "dostawa.html"), head("Dostawa i FAQ - ube ube | Wysyłka w 24h", "Dostawa sklepu ube ube: kurier chłodniczy 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł. Darmowa dostawa od 149 zł. FAQ i zwroty.") + dostawa + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "dostawa.html"), head("Dostawa i FAQ - ube ube | Wysyłka w 24h", "Dostawa sklepu ube ube: kurier 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł. Darmowa dostawa od 149 zł. FAQ i zwroty.") + dostawa + footer + chromeEnd);
 
 // --- KONTAKT ---
 active = "/kontakt.html";

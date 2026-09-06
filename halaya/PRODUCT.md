@@ -10,7 +10,7 @@ Web (statyczny sklep HTML/CSS/JS, zero zależności; docelowo Shopify theme).
 
 ## Users
 
-Polscy smakosze i home-cooks, którzy znają ube z podróży, mediów kulinarnych lub kultury filipińskiej i nie mogą go kupić w zwykłym sklepie. Szukają autentycznego produktu i konkretów (świeżość, transport w chłodzie, terminy partii), nie edukacji o problemie.
+Polscy smakosze i home-cooks, którzy znają ube z podróży, mediów kulinarnych lub kultury filipińskiej i nie mogą go kupić w zwykłym sklepie. Szukają autentycznego produktu i konkretów (świeżość, pochodzenie z Luzon, terminy partii), nie edukacji o problemie.
 
 ## Product Purpose
 
@@ -34,7 +34,8 @@ Użytkownik trafia z social media lub rekomendacji. Scena zakupowa: dodanie prod
 
 - Koszyk trwa w localStorage; koszyk pusty ma własny stan.
 - Filtry kategorii: Świeże / Słodkie / Do wypieków / Napoje / Zestawy.
-- Dostawa: kurier chłodniczy 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł; od 149 zł gratis.
+- Dostawa: kurier 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł; od 149 zł gratis.
+- Bez niepotwierdzonych deklaracji: żadnego „kuriera chłodniczego", żadnych „zakupów bezpośrednio od plantatorów" - piszemy tylko to, co da się obronić.
 - To sklep demonstracyjny - kasa nie realizuje zamówienia; to jest powiedziane wprost w UI.
 - Brak inwencji w faktach: twierdzenia o produkcie ograniczone do opisu ube jako uprawianego na Filipinach od ~2000 lat, antocyjanów jako źródła koloru i terminów partii.
 - Blog z przepisami (lemoniada, latte, halaya, mochi) buduje kontekst użycia proszku.

@@ -250,7 +250,7 @@
     note.hidden = false;
     if (subtotal >= FREE_SHIPPING) {
       note.className = "shipping-note ok";
-      note.innerHTML = `<strong>Masz darmową dostawę.</strong> Doręczymy jutro kurierem chłodniczym.`;
+      note.innerHTML = `<strong>Masz darmową dostawę.</strong> Doręczymy jutro kurierem.`;
     } else {
       const missing = FREE_SHIPPING - subtotal;
       const pct = Math.min(100, (subtotal / FREE_SHIPPING) * 100);
