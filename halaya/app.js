@@ -15,50 +15,9 @@
   document.documentElement.classList.add("js");
 
   /* ---------------- dane ---------------- */
-  const PRODUCTS = [
-    {
-      id: "swieze-ube", name: "Świeże ube", unit: "1 kg", price: 59.0,
-      cat: "swieze", badge: "Limitowana partia",
-      desc: "Pochrzyn fioletowy zbierany ręcznie na plantacjach Luzon. Na parze, pieczony albo w krem - w środku intensywnie fioletowy.",
-      img: "assets/p-fresh.jpg", featured: false,
-    },
-    {
-      id: "halaya", name: "Halaya", unit: "340 g", price: 34.9,
-      cat: "slodkie", badge: "Bestseller",
-      desc: "Klasyczny filipiński krem z gotowanego ube, mleka kokosowego i masła. Smaruj, nakładaj na lody, jedz prosto ze słoika.",
-      img: "assets/p-halaya.jpg", featured: false,
-    },
-    {
-      id: "proszek-ube", name: "Proszek z ube", unit: "250 g", price: 42.0,
-      cat: "wypieki", badge: null,
-      desc: "Liofilizowane ube zmielone na pył. Do latte, ciast, mochi i do barwienia domowej halayi.",
-      img: "assets/p-powder.jpg", featured: false,
-    },
-    {
-      id: "ekstrakt-ube", name: "Ekstrakt z ube", unit: "60 ml", price: 28.0,
-      cat: "wypieki", badge: null,
-      desc: "Naturalna esencja z fioletowego pochrzynu. Kilka kropel wystarczy, by nadać kolor i aromat.",
-      img: "assets/p-extract.jpg", featured: false,
-    },
-    {
-      id: "lody-ube", name: "Lody ube", unit: "473 ml", price: 36.0,
-      cat: "slodkie", badge: "Nowość",
-      desc: "Śmietankowe lody z prawdziwą halayą - wanilia, kokos i fiolet w jednym kęsie.",
-      img: "assets/p-icecream.jpg", featured: false,
-    },
-    {
-      id: "latte-ube", name: "Latte ube", unit: "250 g", price: 31.0,
-      cat: "napoje", badge: null,
-      desc: "Mieszanka do kawy z proszkiem z ube i szczyptą wanilii. Fioletowe latte w dwie minuty.",
-      img: "assets/p-latte.jpg", featured: false,
-    },
-    {
-      id: "zestaw-startowy", name: "Zestaw startowy", unit: "3 produkty", price: 99.0,
-      cat: "zestawy", badge: "Najlepsza wartość",
-      desc: "Halaya, proszek i ekstrakt - wszystko, czego trzeba, by zacząć przygodę z ube. Oszczędzasz 5,90 zł.",
-      img: "assets/p-bundle.jpg", featured: true,
-    },
-  ];
+  // Katalog jest pusty - czekamy na prawdziwe produkty.
+  // Struktura pozycji: { id, name, unit, price, cat, badge, desc, img, featured }
+  const PRODUCTS = [];
 
   /* ---------------- koszyk ---------------- */
   let cart = {};
@@ -107,6 +66,12 @@
   }
 
   function renderGrid(filter = activeFilter) {
+    const filtersEl = $(".filters");
+    if (filtersEl) filtersEl.hidden = PRODUCTS.length === 0;
+    if (!PRODUCTS.length) {
+      grid.innerHTML = `<p class="empty-filter">Katalog w przygotowaniu - prawdziwe produkty pojawią się tu wkrótce.</p>`;
+      return;
+    }
     const list = PRODUCTS.filter((p) => filter === "all" || p.cat === filter);
     if (!list.length) {
       grid.innerHTML = `<p class="empty-filter">W tej kategorii na razie pusto - nowa partia już w drodze z Manili.</p>`;

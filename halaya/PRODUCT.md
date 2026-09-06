@@ -10,7 +10,7 @@ Polscy smakosze i home-cooks, którzy znają ube z podróży, mediów kulinarnyc
 
 ## Product Purpose
 
-Sprzedaż ube i produktów z niego: świeże bulwy, halaya, proszek, ekstrakt, lody, latte oraz zestaw startowy. Sukces = użytkownik w kilka sekund rozumie, czym jest ube, znajduje produkt, dodaje do koszyka i przechodzi kasę bez tarcia.
+Sprzedaż ube i produktów z niego. Katalog w przygotowaniu - lista i ceny produktów czekają na dane od właściciela. Sukces = użytkownik w kilka sekund rozumie, czym jest ube, znajduje produkt, dodaje do koszyka i przechodzi kasę bez tarcia.
 
 ## Positioning
 
