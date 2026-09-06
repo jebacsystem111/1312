@@ -104,7 +104,7 @@ const footer = `  <footer class="site-footer">
     </div>
     <div class="wrap footer-bottom">
       <p>© 2026 ube ube · Fioletowe złoto z Filipin</p>
-      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v15</span></p>
+      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v16</span></p>
       <svg class="barcode" viewBox="0 0 90 22" aria-hidden="true"><path d="M2 2v18M7 2v18M11 2v18M16 2v18M23 2v18M27 2v18M33 2v18M36 2v18M42 2v18M48 2v18M55 2v18M61 2v18M66 2v18M73 2v18M77 2v18M83 2v18M88 2v18" stroke="currentColor" stroke-width="1.6"/></svg>
     </div>
   </footer>
@@ -466,6 +466,11 @@ let dostawa = `
           </table>
         </div>
         <p style="margin-top:20px">Zamówienia od <strong>149 zł</strong> wysyłamy za darmo kurierem.</p>
+
+        <div class="tip" style="margin-top:26px">
+          <strong>Czasem trzeba poczekać - i warto</strong>
+          Ube wioziemy z Luzon partiami, a każda partia przechodzi selekcję i kontrolę jakości, zanim trafi do paczki. Transport ube na najwyższym możliwym poziomie to proces, którego nie da się przyspieszyć - dlatego w niektórych sytuacjach czas dostawy może się wydłużyć nawet do 2 tygodni. Jeśli Twoje zamówienie będzie objęte opóźnieniem, poinformujemy Cię o tym mailem od razu po zakupie.
+        </div>
       </div>
     </section>
 
@@ -490,7 +495,7 @@ let dostawa = `
           </details>
           <details>
             <summary>Kiedy wysyłacie zamówienia?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
-            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem lub do paczkomatu. Wysyłamy z partii, która właśnie dotarła z Luzon - jeśli najbliższy zbiór jest w drodze, poinformujemy Cię o terminie w mailu.</p>
+            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem lub do paczkomatu. W niektórych sytuacjach czas dostawy może się wydłużyć nawet do 2 tygodni - gdy partia z Luzon jest w drodze albo przechodzi kontrolę jakości. O każdym takim opóźnieniu poinformujemy Cię mailem od razu po złożeniu zamówienia.</p>
           </details>
           <details>
             <summary>Mogę użyć proszku zamiast świeżego ube?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>

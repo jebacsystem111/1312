@@ -44,3 +44,5 @@ Użytkownik trafia z social media lub rekomendacji. Scena zakupowa: dodanie prod
 ## Brand Commitments
 
 Rzemieślniczo, konkretnie, ciepło. Zero slangu korpo, zero „premium AI-marketingu". Fiolet jest materiałem (kolor produktu), nie gradientem. Trzy słowa: **stragan, papier, fiolet**.
+
+- Opóźnienia: w niektórych sytuacjach dostawa może potrwać do 2 tygodni (partie z Luzon + kontrola jakości); zawsze informujemy mailem. To jest w UI.
