@@ -2,15 +2,15 @@
 
 ## Świat wizualny
 
-Filipiński stragan spożywczy spotyka polskie delikatesy. Materiały świata: kremowy papier pakowy, etykiety cenowe, perforowane bilety partii, barcody, wiklinowe skrzynki. Fiolet ube jest kolorem produktu — pojawia się tam, gdzie produkt.
+Nocna, lakierowana skrzynia delikatesów: filipiński stragan po zmroku. Materiały świata: głęboka fiolet-czerń (laka), rozświetlony plum, etykiety cenowe ze złotem, perforowane bilety partii, barcody, wiklinowe skrzynki. Fiolet ube świeci jak miąższ bulwy rozciętej w ciemności; złoto pojawia się tam, gdzie cena, gwiazda, obietnica.
 
 ## Paleta
 
-- `--paper #F5EDE0` tło strony; `--paper-deep #ECE0CB` sekcje; `--paper-raised #FBF6EA` karty i pola
-- `--ink #2A1330` tusz; `--ink-soft #4A2B52`; `--muted #6B5A66` (≥4.5:1 na papierze)
-- `--plum #3A1E4A` powierzchnie ciemne (marquee, newsletter, stopka)
-- `--ube-rich #5C2E7E` akcje; `--ube-deep #46225F` hover
-- `--gold #B37E22` wyłącznie akcenty: gwiazdki, etykiety, kody rabatowe
+- `--paper #140A1D` tło strony; `--paper-deep #1A0E26` sekcje; `--paper-raised #241333` karty i pola; `--paper-hover #2C183C`
+- `--ink #F5EDFB` nagłówki; `--ink-soft #D9C9E4`; `--muted #B4A0C2` (≥7:1 na papierze); `--faint #9A85AB` (≥5,7:1)
+- `--plum #0D0614` najgłębsza czerń-fiolet; `--plum-deep #090412` stopka
+- `--ube #A879D8` akcenty tekstowe i ikony (≥5,8:1); `--ube-rich #7E47B8` przyciski (biały tekst ≥6:1); `--ube-deep #6E3EA5` hover; `--ube-pale #2E1B3F` zaznaczenia
+- `--gold #D4A24A` / `--gold-bright #E0B45C` / `--gold-pale #F3E3BF` — tylko akcenty: gwiazdki, etykiety, kody rabatowe, perforacje
 
 ## Typografia
 
@@ -18,12 +18,12 @@ Fraunces (display, italic dla słów-akcentów) + Space Grotesk (UI). Ceny i ilo
 
 ## Kompozycja i zasady
 
-- Karty: jedna elewacja (border 1px), radius 12–16px, hover = uniesienie + cień z offsetem i rozmyciem.
+- Karty: jedna elewacja (border 1px), radius 12–16px, hover = uniesienie + głęboki cień (czerń, nie poświata).
 - Hairline'y i kreskowane „perforacje" zamiast dekoracyjnych ramek; żadnych bocznych pasków >1px.
 - Zero eyebrow-kickerów nad nagłówkami; nagłówek niesie ciężar sam.
 - Numery sekcji tylko w procesie dostawy (sekwencja jest informacją).
 - Ikony: rysowane SVG, jedna kreska 1.6–1.8px; brak emoji i glifów.
-- Bez gradientowego tekstu, bez szkła dekoracyjnego, bez cieni bez offsetu.
+- Bez gradientowego tekstu, bez szkła dekoracyjnego, bez poświat i neonów.
 
 ## Ruch (jeden autorski system)
 
