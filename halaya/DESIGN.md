@@ -1,5 +1,9 @@
 # Design
 
+## Marka
+
+ube ube. Wordmark: Fraunces z kursywą na drugim „ube" w kolorze ube, obok znak rozciętej bulwy (SVG inline). Ostateczne logo dostarczy właściciel - wtedy trafi na ciemne tło z palety.
+
 ## Świat wizualny
 
 Nocna, lakierowana skrzynia delikatesów: filipiński stragan po zmroku. Materiały świata: głęboka fiolet-czerń (laka), rozświetlony plum, etykiety cenowe ze złotem, perforowane bilety partii, barcody, wiklinowe skrzynki. Fiolet ube świeci jak miąższ bulwy rozciętej w ciemności; złoto pojawia się tam, gdzie cena, gwiazda, obietnica.

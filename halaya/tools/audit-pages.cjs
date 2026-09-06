@@ -84,7 +84,7 @@ function auditPage(page) {
     window.eval(fs.readFileSync(path.join(BASE, "app.js"), "utf8"));
     const doc = window.document;
     const click = (el) => el.dispatchEvent(new window.MouseEvent("click", { bubbles: true }));
-    ok("sklep: 1 karta, cena 59,90", doc.querySelectorAll(".card").length === 1 && doc.querySelector(".price").textContent.includes("59,90"));
+    ok("sklep: 3 karty, proszek 59,90", doc.querySelectorAll(".card").length === 3 && [...doc.querySelectorAll(".card .price")].some((el) => el.textContent.includes("59,90")));
     ok("sklep: nav podświetla Sklep", doc.querySelector(".main-nav a[aria-current='page']")?.getAttribute("href") === "/sklep.html");
     click(doc.querySelector("[data-add]"));
     click(doc.querySelector("#cartOpen"));
@@ -150,6 +150,52 @@ function auditPage(page) {
     doc.querySelector("#cMsg").value = "Czy proszek nadaje się do smoothie?";
     form.dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
     ok("kontakt: sukces po wypełnieniu", doc.querySelector("#contactNote").textContent.includes("Dziękujemy"));
+  }
+
+  // 7. PRODUKTY „WKÓTCE” - widoczne, ale nie do kupienia
+  {
+    const dom = new JSDOM(fs.readFileSync(path.join(BASE, "sklep.html"), "utf8"), { url: "http://localhost:8080/sklep.html", runScripts: "outside-only", pretendToBeVisual: true });
+    const { window } = dom;
+    window.matchMedia = () => ({ matches: false });
+    window.Element.prototype.scrollIntoView = function () {};
+    window.HTMLElement.prototype.focus = function () {};
+    try { Object.defineProperty(window, "location", { configurable: true, value: { href: "" } }); } catch { /* bez znaczenia */ }
+    const vc = new VirtualConsole();
+    let errs = [];
+    vc.on("jsdomError", (e) => errs.push(String(e)));
+    window.eval(fs.readFileSync(path.join(BASE, "app.js"), "utf8"));
+    const doc = window.document;
+    const click = (el) => el.dispatchEvent(new window.MouseEvent("click", { bubbles: true }));
+    ok("sklep: 3 produkty (proszek + dżem + syrop)", doc.querySelectorAll(".card").length === 3);
+    ok("sklep: 1 dostępny (Dodaj) i 2 wkrótce (Powiadom mnie)", doc.querySelectorAll("[data-add]").length === 1 && doc.querySelectorAll("[data-soon]").length === 2);
+    ok("sklep: plakietki Wkrótce", doc.querySelectorAll(".card-badge-soon").length === 2);
+    const cardText = [...doc.querySelectorAll(".card")].map((c) => c.textContent);
+    ok("sklep: cena dżemu 32,90", cardText.some((t) => t.includes("32,90")));
+    ok("sklep: cena syropu 29,90", cardText.some((t) => t.includes("29,90")));
+    ok("sklep: ceny z dopiskiem wkrótce", doc.querySelectorAll(".soon-tag").length === 2);
+    click(doc.querySelector("[data-soon]"));
+    ok("sklep: klik „Powiadom mnie” nie dodaje do koszyka", doc.querySelector("#cartCount").textContent === "0");
+    const realErrs = errs.filter((e) => !e.includes("Not implemented: navigation"));
+    ok("sklep: brak błędów JS", realErrs.length === 0);
+  }
+
+  // 8. MARKA ube ube + spotlight pokazuje dostępny produkt
+  {
+    for (const page of PAGES) {
+      const html = fs.readFileSync(path.join(BASE, page), "utf8");
+      const dom = new JSDOM(html, { url: "http://localhost:8080/" + page });
+      ok(`${page}: marka ube ube w logo`, dom.window.document.querySelector(".logo-word")?.textContent.trim() === "ube ube");
+      ok(`${page}: marka ube ube w <title>`, dom.window.document.title.includes("ube ube"));
+    }
+    const dom = new JSDOM(fs.readFileSync(path.join(BASE, "index.html"), "utf8"), { url: "http://localhost:8080/index.html", runScripts: "outside-only", pretendToBeVisual: true });
+    const { window } = dom;
+    window.matchMedia = () => ({ matches: false });
+    window.Element.prototype.scrollIntoView = function () {};
+    window.HTMLElement.prototype.focus = function () {};
+    window.eval(fs.readFileSync(path.join(BASE, "app.js"), "utf8"));
+    const doc = window.document;
+    const spot = doc.querySelector("#spotlightProduct");
+    ok("index: spotlight pokazuje dostępny produkt (Dodaj)", !!spot.querySelector("[data-add]") && !spot.querySelector("[data-soon]"));
   }
 
   const failed = results.filter((r) => r.startsWith("FAIL")).length;

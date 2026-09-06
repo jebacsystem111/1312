@@ -15,13 +15,26 @@
   document.documentElement.classList.add("js");
 
   /* ---------------- dane ---------------- */
-  // Struktura pozycji: { id, name, unit, price, cat, badge, desc, img, featured }
+  // Struktura pozycji: { id, name, unit, price, cat, badge, desc, img, featured, soon }
+  // soon: true = produkt zapowiedziany, widoczny w katalogu, ale nie do kupienia
   const PRODUCTS = [
     {
       id: "proszek-ube", name: "Proszek z ube", unit: "100 g", price: 59.9,
       cat: "wypieki", badge: null,
       desc: "Liofilizowane ube zmielone na drobny pył. Do latte, ciast, mochi i do barwienia domowej halayi.",
-      img: "assets/p-powder.jpg", featured: false,
+      img: "assets/p-powder.jpg", featured: false, soon: false,
+    },
+    {
+      id: "dzem-ube", name: "Dżem z ube", unit: "250 g", price: 32.9,
+      cat: "slodkie", badge: null,
+      desc: "Aksamitny dżem z fioletowego pochrzynu z odrobiną wanilii. Do grzanek, naleśników i serów. Premiera wkrótce - o dacie powiadomimy w newsletterze.",
+      img: "assets/p-dzem.jpg", featured: false, soon: true,
+    },
+    {
+      id: "syrop-ube", name: "Syrop z ube", unit: "125 ml", price: 29.9,
+      cat: "slodkie", badge: null,
+      desc: "Gęsty syrop o smaku ube i karmelu. Do pancake'ów, gofrów, lodów i kawy. Premiera wkrótce - o dacie powiadomimy w newsletterze.",
+      img: "assets/p-syrop.jpg", featured: false, soon: true,
     },
   ];
 
@@ -48,11 +61,24 @@
   }
 
   function cardHTML(p) {
+    const badge = p.badge || (p.soon ? "Wkrótce" : "");
+    const badgeCls = p.soon && !p.badge ? " card-badge-soon" : "";
+    const foot = p.soon
+      ? `<span class="price">${fmt.format(p.price)} <em class="soon-tag">wkrótce</em></span>
+            <button class="add-btn add-btn-soon" type="button" data-soon="${p.id}" aria-label="${esc(p.name)} - wkrótce w sprzedaży">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0v4l2 3H4l2-3V9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 19a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Powiadom mnie
+            </button>`
+      : `<span class="price">${fmt.format(p.price)}</span>
+            <button class="add-btn" type="button" data-add="${p.id}">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              Dodaj
+            </button>`;
     return `
-      <article class="card${p.featured ? " card-featured" : ""}" data-id="${p.id}">
+      <article class="card${p.featured ? " card-featured" : ""}${p.soon ? " card-soon" : ""}" data-id="${p.id}">
         <div class="card-media">
           <img src="${p.img}" alt="${esc(p.name)} - ${esc(p.unit)}" loading="lazy">
-          ${p.badge ? `<span class="card-badge">${esc(p.badge)}</span>` : ""}
+          ${badge ? `<span class="card-badge${badgeCls}">${esc(badge)}</span>` : ""}
         </div>
         <div class="card-body">
           <div>
@@ -60,13 +86,7 @@
             <span class="card-unit">${esc(p.unit)}</span>
           </div>
           <p class="card-desc">${esc(p.desc)}</p>
-          <div class="card-foot">
-            <span class="price">${fmt.format(p.price)}</span>
-            <button class="add-btn" type="button" data-add="${p.id}">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-              Dodaj
-            </button>
-          </div>
+          <div class="card-foot">${foot}</div>
         </div>
       </article>`;
   }
@@ -91,7 +111,8 @@
   const spotlightEl = $("#spotlightProduct");
   function renderSpotlight() {
     if (!spotlightEl) return;
-    if (PRODUCTS.length) spotlightEl.innerHTML = cardHTML(PRODUCTS[0]);
+    const firstAvailable = PRODUCTS.find((p) => !p.soon) || PRODUCTS[0];
+    if (firstAvailable) spotlightEl.innerHTML = cardHTML(firstAvailable);
   }
 
   $$(".chip").forEach((chip) =>
@@ -131,13 +152,29 @@
     setTimeout(() => clone.remove(), 900);
   }
 
+  function goNewsletter() {
+    const box = $("#newsletter");
+    if (box) {
+      box.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      const input = $("#newsletterEmail");
+      if (input) input.focus();
+    } else {
+      window.location.href = "/index.html#newsletter";
+    }
+  }
+
   function addToCart(id, qty = 1, imgEl = null) {
+    const p = PRODUCTS.find((x) => x.id === id);
+    if (!p) return;
+    if (p.soon) {
+      goNewsletter();
+      return;
+    }
     cart[id] = (cart[id] || 0) + qty;
     saveCart();
     renderCart();
     flyToCart(imgEl);
-    const p = PRODUCTS.find((x) => x.id === id);
-    if (p) showToast(`Dodano: ${p.name}`, () => openDrawer());
+    showToast(`Dodano: ${p.name}`, () => openDrawer());
     const badge = $("#cartCount");
     badge.classList.remove("pop");
     void badge.offsetWidth;
@@ -145,6 +182,11 @@
   }
 
   document.addEventListener("click", (e) => {
+    const soonBtn = e.target.closest("[data-soon]");
+    if (soonBtn) {
+      goNewsletter();
+      return;
+    }
     const btn = e.target.closest("[data-add]");
     if (!btn) return;
     const card = btn.closest(".card");
@@ -367,7 +409,7 @@
       return;
     }
     renderCheckoutSteps("pay");
-    const orderNo = "HAL-" + (1000 + Math.floor(Math.random() * 9000));
+    const orderNo = "UBE-" + (1000 + Math.floor(Math.random() * 9000));
     setTimeout(() => {
       $("#orderNumber").textContent = orderNo;
       renderCheckoutSteps("done");
@@ -418,7 +460,7 @@
       return;
     }
     note.className = "form-note";
-    note.textContent = "Gotowe! Kod HALAYA10 właśnie leci na Twoją skrzynkę.";
+    note.textContent = "Gotowe! Kod UBEUBE10 właśnie leci na Twoją skrzynkę.";
     email.value = "";
   });
 

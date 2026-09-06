@@ -1361,3 +1361,45 @@ html.js .reveal:nth-child(4) { animation-delay: 0.38s; }
   .perks, .values-grid { grid-template-columns: 1fr; gap: 26px; }
   .recipe-photo img { aspect-ratio: 16 / 10; }
 }
+
+/* ============================================================
+   MARKA ube ube + produkty „wkrótce"
+   ============================================================ */
+
+.logo-word em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--ube);
+}
+
+/* produkt zapowiedziany: widoczny, ale nie do kupienia */
+.card-soon .card-media img { filter: saturate(0.82) brightness(0.97); }
+.card-badge-soon {
+  background: rgba(224, 180, 92, 0.16);
+  color: var(--gold-pale);
+  border: 1px dashed var(--rule-gold);
+  letter-spacing: 0.08em;
+}
+.soon-tag {
+  font-style: normal;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-pale);
+  border: 1px dashed var(--rule-gold);
+  border-radius: var(--r-pill);
+  padding: 2px 9px;
+  margin-left: 8px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.add-btn-soon {
+  background: transparent;
+  border: 1px dashed var(--rule-gold);
+  color: var(--gold-pale);
+  padding: 10px 16px;
+  font-size: 0.86rem;
+}
+.add-btn-soon:hover { background: rgba(224, 180, 92, 0.12); }
+.add-btn-soon:active { transform: scale(0.94); }

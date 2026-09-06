@@ -1,4 +1,4 @@
-// Generator podstron sklepu Halaya - wspólny chrome + treść każdej strony.
+// Generator podstron sklepu ube ube - wspólny chrome + treść każdej strony.
 // UWAGA: wszystkie wewnętrzne linki i zasoby muszą być BEZWZGLĘDNE (/...),
 // bo podstrony przepisów żyją w podkatalogu przepisy/.
 // Uruchomienie: node tools/gen-pages.js (z katalogu halaya/)
@@ -19,7 +19,7 @@ const head = (title, desc) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=6">
+  <link rel="stylesheet" href="/styles.css?v=7">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -31,12 +31,12 @@ const head = (title, desc) => `<!doctype html>
 
   <header class="site-header" id="siteHeader">
     <div class="wrap header-inner">
-      <a class="logo" href="/index.html" aria-label="Halaya - strona główna">
+      <a class="logo" href="/index.html" aria-label="ube ube - strona główna">
         <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
           <ellipse cx="16" cy="19" rx="8" ry="10" fill="currentColor"/>
           <path d="M16 7c-1.5 4 1.5 5 0 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
-        <span class="logo-word">Halaya</span>
+        <span class="logo-word">ube <em>ube</em></span>
       </a>
 
       <nav class="main-nav" aria-label="Główna nawigacja">
@@ -81,7 +81,7 @@ const footer = `  <footer class="site-footer">
             <ellipse cx="16" cy="19" rx="8" ry="10" fill="currentColor"/>
             <path d="M16 7c-1.5 4 1.5 5 0 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
           </svg>
-          <span class="logo-word">Halaya</span>
+          <span class="logo-word">ube <em>ube</em></span>
         </a>
         <p>Fioletowe złoto z Filipin. Proszek z ube, świeże bulwy i przepisy - zbierane ręcznie na Luzon, pakowane w chłodzie, u Ciebie w 24 godziny.</p>
       </div>
@@ -100,13 +100,13 @@ const footer = `  <footer class="site-footer">
       </nav>
       <div class="footer-col">
         <h3>Kontakt</h3>
-        <a href="mailto:czesc@halaya.shop">czesc@halaya.shop</a>
+        <a href="mailto:czesc@ubeube.pl">czesc@ubeube.pl</a>
         <a href="tel:+48221234567">+48 22 123 45 67</a>
         <p>ul. Fioletowa 13, Warszawa<br>pn-pt 9:00-17:00</p>
       </div>
     </div>
     <div class="wrap footer-bottom">
-      <p>© 2026 Halaya · Fioletowe złoto z Filipin</p>
+      <p>© 2026 ube ube · Fioletowe złoto z Filipin</p>
       <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24</p>
       <svg class="barcode" viewBox="0 0 90 22" aria-hidden="true"><path d="M2 2v18M7 2v18M11 2v18M16 2v18M23 2v18M27 2v18M33 2v18M36 2v18M42 2v18M48 2v18M55 2v18M61 2v18M66 2v18M73 2v18M77 2v18M83 2v18M88 2v18" stroke="currentColor" stroke-width="1.6"/></svg>
     </div>
@@ -265,7 +265,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=6"></script>
+  <script src="/app.js?v=7"></script>
 </body>
 </html>
 `;
@@ -313,7 +313,7 @@ let shop = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "sklep.html"), head("Sklep - Halaya | Proszek z ube i więcej", "Katalog sklepu Halaya: proszek z ube 100 g i kolejne produkty z fioletowego pochrzynu. Wysyłka w 24h, darmowa dostawa od 149 zł.") + shop + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "sklep.html"), head("Sklep - ube ube | Proszek z ube i więcej", "Katalog sklepu ube ube: proszek z ube 100 g i kolejne produkty z fioletowego pochrzynu. Wysyłka w 24h, darmowa dostawa od 149 zł.") + shop + footer + chromeEnd);
 
 // --- PRZEPISY ---
 active = "/przepisy.html";
@@ -359,12 +359,12 @@ ${recipeCard("/przepisy/mochi-ube.html", "/assets/r-mochi.jpg", "Fioletowe mochi
 
         <div class="tip" style="margin-top: clamp(28px, 4vw, 48px)">
           <strong>Masz własny przepis z ube?</strong>
-          Wyślij go na czesc@halaya.shop - najlepsze publikujemy na stronie z podpisem autora i małą paczką proszku w podzięce.
+          Wyślij go na czesc@ubeube.pl - najlepsze publikujemy na stronie z podpisem autora i małą paczką proszku w podzięce.
         </div>
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "przepisy.html"), head("Przepisy z ube - Halaya | Lemoniada, latte, halaya, mochi", "Sprawdzone przepisy z proszkiem z ube: fioletowa lemoniada, latte z ube, halaya i mochi. Krok po kroku, ze składnikami i poradami.") + recipes + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "przepisy.html"), head("Przepisy z ube - ube ube | Lemoniada, latte, halaya, mochi", "Sprawdzone przepisy z proszkiem z ube: fioletowa lemoniada, latte z ube, halaya i mochi. Krok po kroku, ze składnikami i poradami.") + recipes + footer + chromeEnd);
 
 // --- O NAS ---
 active = "/o-nas.html";
@@ -374,7 +374,7 @@ let onas = `
       <div class="wrap">
         ${breadcrumb([["/o-nas.html", null]])}
         <h1 class="display reveal">O nas</h1>
-        <p class="lead reveal">Halaya zaczęła się od jednego stołu z ube na bazarze w Manili. Dziś ten sam fiolet dowozimy do kuchni w całej Polsce.</p>
+        <p class="lead reveal">Wszystko zaczęło się od jednego stołu z ube na bazarze w Manili. Dziś ten sam fiolet dowozimy do kuchni w całej Polsce.</p>
       </div>
     </section>
 
@@ -422,7 +422,7 @@ let onas = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "o-nas.html"), head("O nas - Halaya | Fiolet, który nas połączył", "Historia sklepu Halaya: ube z rodzinnych plantacji doliny Pampanga, uczciwe ceny skupu, transport w chłodzie i zero barwników.") + onas + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "o-nas.html"), head("O nas - ube ube | Fiolet, który nas połączył", "Historia sklepu ube ube: ube z rodzinnych plantacji doliny Pampanga, uczciwe ceny skupu, transport w chłodzie i zero barwników.") + onas + footer + chromeEnd);
 
 // --- DOSTAWA ---
 active = "/dostawa.html";
@@ -476,7 +476,7 @@ let dostawa = `
       <div class="wrap faq-wrap">
         <div class="faq-head">
           <h2 class="display-sm">FAQ</h2>
-          <p>Nie znalazłeś odpowiedzi? Napisz na <a href="mailto:czesc@halaya.shop">czesc@halaya.shop</a> - odpowiadamy w godzinę.</p>
+          <p>Nie znalazłeś odpowiedzi? Napisz na <a href="mailto:czesc@ubeube.pl">czesc@ubeube.pl</a> - odpowiadamy w godzinę.</p>
         </div>
         <div class="faq-list">
           <details>
@@ -513,7 +513,7 @@ let dostawa = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "dostawa.html"), head("Dostawa i FAQ - Halaya | Wysyłka w 24h", "Dostawa sklepu Halaya: kurier chłodniczy 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł. Darmowa dostawa od 149 zł. FAQ i zwroty.") + dostawa + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "dostawa.html"), head("Dostawa i FAQ - ube ube | Wysyłka w 24h", "Dostawa sklepu ube ube: kurier chłodniczy 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł. Darmowa dostawa od 149 zł. FAQ i zwroty.") + dostawa + footer + chromeEnd);
 
 // --- KONTAKT ---
 active = "/kontakt.html";
@@ -532,7 +532,7 @@ let kontakt = `
         <div class="contact-info">
           <div class="contact-line">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 7l8.5 6 8.5-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <div><a href="mailto:czesc@halaya.shop">czesc@halaya.shop</a><p>odpowiadamy w godzinę</p></div>
+            <div><a href="mailto:czesc@ubeube.pl">czesc@ubeube.pl</a><p>odpowiadamy w godzinę</p></div>
           </div>
           <div class="contact-line">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h4l2 5-2.5 1.5a13 13 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -565,13 +565,13 @@ let kontakt = `
       </div>
     </section>
   </main>`;
-fs.writeFileSync(path.join(OUT, "kontakt.html"), head("Kontakt - Halaya | Napisz do nas", "Kontakt ze sklepem Halaya: e-mail, telefon i odbiór osobisty w Warszawie. Formularz kontaktowy - odpowiadamy w godzinę.") + kontakt + footer + chromeEnd);
+fs.writeFileSync(path.join(OUT, "kontakt.html"), head("Kontakt - ube ube | Napisz do nas", "Kontakt ze sklepem ube ube: e-mail, telefon i odbiór osobisty w Warszawie. Formularz kontaktowy - odpowiadamy w godzinę.") + kontakt + footer + chromeEnd);
 
 /* ============ przepisy (podstrony) ============ */
 const recipePage = (file, title, desc, crumb, body) => {
   active = "/przepisy.html";
   fs.writeFileSync(path.join(OUT, "przepisy", file),
-    head(`${title} - Halaya | Przepis krok po kroku`, desc) +
+    head(`${title} - ube ube | Przepis krok po kroku`, desc) +
     `  <main id="main">
     <section class="page-hero">
       <div class="wrap">
