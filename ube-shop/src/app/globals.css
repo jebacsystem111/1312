@@ -1,0 +1,230 @@
+@import "@fontsource-variable/bricolage-grotesque/index.css";
+@import "@fontsource-variable/instrument-sans/index.css";
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Purpura - tokeny designu
+   Strategia motywu: zmienne CSS + @theme inline, więc jedno źródło prawdy
+   dla trybu jasnego i ciemnego. Zero nadpisań na poziomie sekcji.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Powierzchnie - mleczna biel, nie krem/beż */
+  --paper: oklch(97.6% 0.005 76);
+  --paper-2: oklch(95.2% 0.01 78);
+  --panel: oklch(99.1% 0.003 80);
+  --line: oklch(87.5% 0.012 78);
+  --line-soft: oklch(92% 0.008 78);
+
+  /* Tekst - głęboki bakłażan, nigdy #000 */
+  --ink: oklch(27% 0.058 302);
+  --ink-2: oklch(41% 0.035 300);
+  --ink-3: oklch(43.5% 0.028 298);
+
+  /* Akcent: prawdziwy ube, przygaszony fiolet. Jedyny akcent na stronie. */
+  --ube: oklch(52.5% 0.155 305);
+  --ube-deep: oklch(41% 0.135 306);
+  --ube-deeper: oklch(33.5% 0.11 306);
+  --ube-tint: oklch(94.5% 0.028 305);
+  --ube-on: oklch(98% 0.006 80);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: oklch(20.5% 0.03 300);
+    --paper-2: oklch(24.5% 0.032 300);
+    --panel: oklch(26.5% 0.032 300);
+    --line: oklch(35% 0.03 300);
+    --line-soft: oklch(29% 0.028 300);
+
+    --ink: oklch(96% 0.008 80);
+    --ink-2: oklch(84% 0.018 302);
+    --ink-3: oklch(73% 0.022 300);
+
+    --ube: oklch(68% 0.15 306);
+    --ube-deep: oklch(78% 0.13 306);
+    --ube-deeper: oklch(87% 0.09 306);
+    --ube-tint: oklch(28% 0.05 302);
+    --ube-on: oklch(21% 0.04 302);
+
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --font-display: "Bricolage Grotesque Variable", "Instrument Sans Variable", ui-sans-serif, sans-serif;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ube: var(--ube);
+  --color-ube-deep: var(--ube-deep);
+  --color-ube-deeper: var(--ube-deeper);
+  --color-ube-tint: var(--ube-tint);
+  --color-ube-on: var(--ube-on);
+
+  /* Krzywe i czasy - jedno źródło prawdy dla całego UI */
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-move: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --radius-card: 14px;
+  --radius-tile: 20px;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Nawierzchnie przeglądarki też projektujemy, nie zostawiamy domyślnych */
+  ::selection {
+    background: var(--ube);
+    color: var(--ube-on);
+  }
+
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ube);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: var(--ube);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
+
+  /* Cena i gramatura: cyfry tabelaryczne, żeby się nie przestawiały */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper-2);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border: 3px solid var(--paper-2);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ube);
+  }
+  * {
+    scrollbar-color: var(--line) var(--paper-2);
+  }
+}
+
+@utility display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.4vw, 5.1rem);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.1vw, 3.15rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+@utility display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.1vw, 1.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+}
+
+/* Sticky-stack: karty wspinają się po ekranie bez JS i bez ScrollTriggera */
+@utility stack-card {
+  position: sticky;
+  top: calc(5rem + var(--i, 0) * 1.25rem);
+}
+
+@keyframes purpura-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: purpura-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+    width: 100% !important;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+  .stack-card {
+    position: relative;
+    top: 0;
+  }
+}
