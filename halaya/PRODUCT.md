@@ -37,6 +37,7 @@ Użytkownik trafia z social media lub rekomendacji. Scena zakupowa: dodanie prod
 - Dostawa: kurier 14,90 zł, paczkomat 11,90 zł, odbiór osobisty 0 zł; od 149 zł gratis.
 - Bez niepotwierdzonych deklaracji: żadnego „kuriera chłodniczego", żadnych „zakupów bezpośrednio od plantatorów" - piszemy tylko to, co da się obronić.
 - To sklep demonstracyjny - kasa nie realizuje zamówienia; to jest powiedziane wprost w UI.
+- Opakowania: puszki lub torebki doypack. Nie sprzedajemy bulw - kopiujemy tylko produkty z katalogu.
 - Brak inwencji w faktach: twierdzenia o produkcie ograniczone do opisu ube jako uprawianego na Filipinach od ~2000 lat, antocyjanów jako źródła koloru i terminów partii.
 - Blog z przepisami (lemoniada, latte, halaya, mochi) buduje kontekst użycia proszku.
 

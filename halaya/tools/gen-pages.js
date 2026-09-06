@@ -19,7 +19,7 @@ const head = (title, desc) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=13">
+  <link rel="stylesheet" href="/styles.css?v=14">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -80,7 +80,7 @@ const footer = `  <footer class="site-footer">
           <img class="logo-img" src="/assets/logo-dark.png" alt="" width="92" height="96">
           <span class="logo-word" aria-hidden="true">UBE <em>UBE</em></span>
         </a>
-        <p>Fioletowe złoto z Filipin. Proszek z ube, świeże bulwy i przepisy - zbierane ręcznie na Luzon, u Ciebie w 24 godziny.</p>
+        <p>Fioletowe złoto z Filipin. Proszek z ube i przepisy - zbierane ręcznie na Luzon, u Ciebie w 24 godziny.</p>
       </div>
       <nav class="footer-col" aria-label="Sklep">
         <h3>Sklep</h3>
@@ -104,7 +104,7 @@ const footer = `  <footer class="site-footer">
     </div>
     <div class="wrap footer-bottom">
       <p>© 2026 ube ube · Fioletowe złoto z Filipin</p>
-      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v13</span></p>
+      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v14</span></p>
       <svg class="barcode" viewBox="0 0 90 22" aria-hidden="true"><path d="M2 2v18M7 2v18M11 2v18M16 2v18M23 2v18M27 2v18M33 2v18M36 2v18M42 2v18M48 2v18M55 2v18M61 2v18M66 2v18M73 2v18M77 2v18M83 2v18M88 2v18" stroke="currentColor" stroke-width="1.6"/></svg>
     </div>
   </footer>
@@ -262,7 +262,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=13"></script>
+  <script src="/app.js?v=14"></script>
 </body>
 </html>
 `;
@@ -300,7 +300,7 @@ let shop = `
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4 7l8-3 8 3-8 3-8-3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <div><strong>Starannie pakowane</strong><span>szczelne puszki i przewiewny papier - fiolet nie blaknie</span></div>
+            <div><strong>Starannie pakowane</strong><span>puszki lub torebki doypack - fiolet nie blaknie</span></div>
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21c0-6 5-9 14-10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M5 21c2-5 6-8 11-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -439,7 +439,7 @@ let dostawa = `
           <li>
             <span class="process-num" aria-hidden="true">1</span>
             <h3>Zamawiasz do 12:00</h3>
-            <p>Pakujemy tego samego dnia: proszki w szczelnych puszkach, bulwy w przewiewnym papierze.</p>
+            <p>Pakujemy tego samego dnia: proszki w puszki lub torebki doypack.</p>
           </li>
           <li>
             <span class="process-num" aria-hidden="true">2</span>
@@ -486,11 +486,11 @@ let dostawa = `
           </details>
           <details>
             <summary>Jak przechowywać proszek?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
-            <p>W szczelnie zamkniętej puszce, w suchym i ciemnym miejscu - zachowuje kolor i aromat przez 12 miesięcy. Nie trzymaj go nad kuchenką: para zbryla proszek.</p>
+            <p>W szczelnie zamkniętej puszce lub torebce doypack, w suchym i ciemnym miejscu - zachowuje kolor i aromat przez 12 miesięcy. Nie trzymaj go nad kuchenką: para zbryla proszek.</p>
           </details>
           <details>
             <summary>Kiedy wysyłacie zamówienia?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
-            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem lub do paczkomatu. Świeże bulwy wysyłamy z partii, która właśnie dotarła z Luzon - jeśli najbliższy zbiór jest w drodze, poinformujemy Cię o terminie w mailu.</p>
+            <p>Zamówienia złożone do 12:00 pakujemy tego samego dnia i doręczamy w 24 godziny kurierem lub do paczkomatu. Wysyłamy z partii, która właśnie dotarła z Luzon - jeśli najbliższy zbiór jest w drodze, poinformujemy Cię o terminie w mailu.</p>
           </details>
           <details>
             <summary>Mogę użyć proszku zamiast świeżego ube?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></summary>
@@ -506,7 +506,7 @@ let dostawa = `
           <h2 class="display-sm">Zwroty</h2>
         </div>
         <p style="margin-bottom:16px">Nieotwarty proszek możesz zwrócić w ciągu 14 dni od doręczenia - odeślemy pieniądze na konto w 3 dni robocze.</p>
-        <p>Jeśli paczka dotarła uszkodzona albo proszek zbrylił się w transporcie, napisz do nas ze zdjęciem - wyślemy nową puszkę bez dyskusji i bez zwrotu.</p>
+        <p>Jeśli paczka dotarła uszkodzona albo proszek zbrylił się w transporcie, napisz do nas ze zdjęciem - wyślemy nowe opakowanie bez dyskusji i bez zwrotu.</p>
       </div>
     </section>
   </main>`;
