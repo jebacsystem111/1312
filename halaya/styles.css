@@ -1421,3 +1421,10 @@ html.js .reveal:nth-child(4) { animation-delay: 0.38s; }
   letter-spacing: 0.09em;
 }
 .logo-word em { letter-spacing: 0.07em; }
+
+/* ---------- znacznik wersji (tymczasowy, na czas budowy) ---------- */
+.build-ver {
+  opacity: 0.55;
+  font-size: 0.78rem;
+  margin-left: 10px;
+}
