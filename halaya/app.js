@@ -1,5 +1,5 @@
 /* ============================================================
-   HALAYA — logika sklepu
+   HALAYA - logika sklepu
    Koszyk, kasa, filtry, toast, menu. Bez zależności.
    ============================================================ */
 (() => {
@@ -19,7 +19,7 @@
     {
       id: "swieze-ube", name: "Świeże ube", unit: "1 kg", price: 59.0,
       cat: "swieze", badge: "Limitowana partia",
-      desc: "Pochrzyn fioletowy zbierany ręcznie na plantacjach Luzon. Na parze, pieczony albo w krem — w środku intensywnie fioletowy.",
+      desc: "Pochrzyn fioletowy zbierany ręcznie na plantacjach Luzon. Na parze, pieczony albo w krem - w środku intensywnie fioletowy.",
       img: "assets/p-fresh.jpg", featured: false,
     },
     {
@@ -43,7 +43,7 @@
     {
       id: "lody-ube", name: "Lody ube", unit: "473 ml", price: 36.0,
       cat: "slodkie", badge: "Nowość",
-      desc: "Śmietankowe lody z prawdziwą halayą — wanilia, kokos i fiolet w jednym kęsie.",
+      desc: "Śmietankowe lody z prawdziwą halayą - wanilia, kokos i fiolet w jednym kęsie.",
       img: "assets/p-icecream.jpg", featured: false,
     },
     {
@@ -55,7 +55,7 @@
     {
       id: "zestaw-startowy", name: "Zestaw startowy", unit: "3 produkty", price: 99.0,
       cat: "zestawy", badge: "Najlepsza wartość",
-      desc: "Halaya, proszek i ekstrakt — wszystko, czego trzeba, by zacząć przygodę z ube. Oszczędzasz 5,90 zł.",
+      desc: "Halaya, proszek i ekstrakt - wszystko, czego trzeba, by zacząć przygodę z ube. Oszczędzasz 5,90 zł.",
       img: "assets/p-bundle.jpg", featured: true,
     },
   ];
@@ -86,7 +86,7 @@
     return `
       <article class="card${p.featured ? " card-featured" : ""}" data-id="${p.id}">
         <div class="card-media">
-          <img src="${p.img}" alt="${esc(p.name)} — ${esc(p.unit)}" loading="lazy">
+          <img src="${p.img}" alt="${esc(p.name)} - ${esc(p.unit)}" loading="lazy">
           ${p.badge ? `<span class="card-badge">${esc(p.badge)}</span>` : ""}
         </div>
         <div class="card-body">
@@ -109,7 +109,7 @@
   function renderGrid(filter = activeFilter) {
     const list = PRODUCTS.filter((p) => filter === "all" || p.cat === filter);
     if (!list.length) {
-      grid.innerHTML = `<p class="empty-filter">W tej kategorii na razie pusto — nowa partia już w drodze z Manili.</p>`;
+      grid.innerHTML = `<p class="empty-filter">W tej kategorii na razie pusto - nowa partia już w drodze z Manili.</p>`;
       return;
     }
     grid.innerHTML = list.map(cardHTML).join("");
