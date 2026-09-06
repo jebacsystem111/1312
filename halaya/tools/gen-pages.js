@@ -19,7 +19,7 @@ const head = (title, desc) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=11">
+  <link rel="stylesheet" href="/styles.css?v=12">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -65,8 +65,11 @@ const nav = (href, label, act) => act === href
   : `        <a href="${href}">${label}</a>`;
 
 const breadcrumb = (parts) => {
-  const crumbs = [['<a href="/index.html">Strona główna</a>']]
-    .concat(parts.map(([href, label]) => href ? `<a href="${href}">${label}</a>` : `<span class="current">${label}</span>`));
+  const crumbs = ['<a href="/index.html">Strona główna</a>']
+    .concat(parts.map(([href, label]) => {
+      const text = label || "";
+      return href ? `<a href="${href}">${text}</a>` : `<span class="current">${text}</span>`;
+    }));
   return `<nav class="breadcrumb" aria-label="Okruszki">${crumbs.join('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')}</nav>`;
 };
 
@@ -259,7 +262,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=11"></script>
+  <script src="/app.js?v=12"></script>
 </body>
 </html>
 `;
@@ -272,7 +275,7 @@ let shop = `
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        ${breadcrumb([["/sklep.html", null]])}
+        ${breadcrumb([[null, "Sklep"]])}
         <h1 class="display reveal">Sklep</h1>
         <p class="lead reveal">Wszystkie zamówienia pakujemy i wysyłamy w 24 godziny. Darmowa dostawa od 149 zł.</p>
       </div>
@@ -336,7 +339,7 @@ let recipes = `
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        ${breadcrumb([["/przepisy.html", null]])}
+        ${breadcrumb([[null, "Przepisy"]])}
         <h1 class="display reveal">Przepisy</h1>
         <p class="lead reveal">Jedna łyżeczka proszku z ube potrafi więcej, niż się wydaje. Lemoniada, latte, halaya, mochi - wszystko w kolorze, którego nie da się podrobić.</p>
       </div>
@@ -366,7 +369,7 @@ let onas = `
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        ${breadcrumb([["/o-nas.html", null]])}
+        ${breadcrumb([[null, "O nas"]])}
         <h1 class="display reveal">O nas</h1>
         <p class="lead reveal">Wszystko zaczęło się od jednego stołu z ube na bazarze w Manili. Dziś ten sam fiolet dowozimy do kuchni w całej Polsce.</p>
       </div>
@@ -424,7 +427,7 @@ let dostawa = `
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        ${breadcrumb([["/dostawa.html", null]])}
+        ${breadcrumb([[null, "Dostawa"]])}
         <h1 class="display reveal">Dostawa</h1>
         <p class="lead reveal">Zamów do 12:00, a jutro fiolet będzie u Ciebie.</p>
       </div>
@@ -515,7 +518,7 @@ let kontakt = `
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        ${breadcrumb([["/kontakt.html", null]])}
+        ${breadcrumb([[null, "Kontakt"]])}
         <h1 class="display reveal">Kontakt</h1>
         <p class="lead reveal">Pytanie o partię, przepis albo współpracę? Odpowiadamy w godzinę w dni robocze.</p>
       </div>

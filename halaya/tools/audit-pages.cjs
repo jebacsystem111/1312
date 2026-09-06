@@ -204,6 +204,21 @@ function auditPage(page) {
     ok("index: spotlight pokazuje dostępny produkt (Dodaj)", !!spot.querySelector("[data-add]") && !spot.querySelector("[data-soon]"));
   }
 
+  // 9. OKRUSZKI: nigdy "null", bieżąca strona zawsze podpisana
+  {
+    for (const page of PAGES) {
+      const html = fs.readFileSync(path.join(BASE, page), "utf8");
+      const dom = new JSDOM(html, { url: "http://localhost:8080/" + page });
+      const bc = dom.window.document.querySelector(".breadcrumb");
+      if (!bc) { ok(`${page}: brak breadcrumbu (strona główna - OK)`, page === "index.html"); continue; }
+      const text = bc.textContent.replace(/\s+/g, " ").trim();
+      ok(`${page}: breadcrumb bez "null"`, !text.includes("null"));
+      const cur = bc.querySelector(".current");
+      ok(`${page}: bieżąca strona podpisana`, !!cur && cur.textContent.trim().length > 0);
+      ok(`${page}: breadcrumb zaczyna się od "Strona główna"`, text.startsWith("Strona główna"));
+    }
+  }
+
   const failed = results.filter((r) => r.startsWith("FAIL")).length;
   console.log(results.join("\n"));
   console.log(`\nPODSUMOWANIE: ${results.length} kontroli, ${failed} błędów`);
