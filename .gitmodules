@@ -1,0 +1,9 @@
+[submodule "emilskills"]
+	path = emilskills
+	url = https://github.com/jebacsystem111/emilskills.git
+[submodule "gust"]
+	path = gust
+	url = https://github.com/jebacsystem111/gust.git
+[submodule "impeccableskills"]
+	path = impeccableskills
+	url = https://github.com/jebacsystem111/impeccableskills.git
