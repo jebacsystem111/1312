@@ -10,7 +10,7 @@ Polscy smakosze i home-cooks, którzy znają ube z podróży, mediów kulinarnyc
 
 ## Product Purpose
 
-Sprzedaż ube i produktów z niego. Katalog w przygotowaniu - lista i ceny produktów czekają na dane od właściciela. Sukces = użytkownik w kilka sekund rozumie, czym jest ube, znajduje produkt, dodaje do koszyka i przechodzi kasę bez tarcia.
+Sprzedaż ube i produktów z niego. Katalog w budowie według danych od właściciela: obecnie Proszek z ube 100 g (59,90 zł, kategoria „Do wypieków"). Sukces = użytkownik w kilka sekund rozumie, czym jest ube, znajduje produkt, dodaje do koszyka i przechodzi kasę bez tarcia.
 
 ## Positioning
 

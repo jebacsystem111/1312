@@ -15,9 +15,15 @@
   document.documentElement.classList.add("js");
 
   /* ---------------- dane ---------------- */
-  // Katalog jest pusty - czekamy na prawdziwe produkty.
   // Struktura pozycji: { id, name, unit, price, cat, badge, desc, img, featured }
-  const PRODUCTS = [];
+  const PRODUCTS = [
+    {
+      id: "proszek-ube", name: "Proszek z ube", unit: "100 g", price: 59.9,
+      cat: "wypieki", badge: null,
+      desc: "Liofilizowane ube zmielone na drobny pył. Do latte, ciast, mochi i do barwienia domowej halayi.",
+      img: "assets/p-powder.jpg", featured: false,
+    },
+  ];
 
   /* ---------------- koszyk ---------------- */
   let cart = {};
