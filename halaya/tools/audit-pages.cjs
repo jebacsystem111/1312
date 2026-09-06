@@ -185,9 +185,11 @@ function auditPage(page) {
     for (const page of PAGES) {
       const html = fs.readFileSync(path.join(BASE, page), "utf8");
       const dom = new JSDOM(html, { url: "http://localhost:8080/" + page });
-      ok(`${page}: logo ube ube w nagłówku`, (() => {
+      ok(`${page}: logo + napis UBE UBE w nagłówku`, (() => {
         const i = dom.window.document.querySelector(".logo-img");
-        return i && i.alt === "ube ube" && i.getAttribute("src") === "/assets/logo-dark.png";
+        const w = dom.window.document.querySelector(".logo-word");
+        return i && i.getAttribute("src") === "/assets/logo-dark.png" &&
+          w && w.textContent.trim() === "UBE UBE";
       })());
       ok(`${page}: marka ube ube w <title>`, dom.window.document.title.includes("ube ube"));
     }
