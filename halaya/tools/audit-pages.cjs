@@ -44,6 +44,7 @@ function auditPage(page) {
   doc.querySelectorAll('a[href]').forEach((a) => check(a.getAttribute("href"), "link", `a "${a.textContent.trim().slice(0, 40)}"`));
   doc.querySelectorAll('img[src]').forEach((img) => check(img.getAttribute("src"), "obraz", `img[alt="${img.alt}"]`));
   doc.querySelectorAll('link[rel="stylesheet"]').forEach((l) => check(l.getAttribute("href"), "css", `stylesheet`));
+  doc.querySelectorAll('link[rel="icon"]').forEach((l) => check(l.getAttribute("href"), "favicon", `favicon`));
   doc.querySelectorAll('script[src]').forEach((s) => check(s.getAttribute("src"), "js", `script`));
   return issues;
 }
@@ -184,7 +185,10 @@ function auditPage(page) {
     for (const page of PAGES) {
       const html = fs.readFileSync(path.join(BASE, page), "utf8");
       const dom = new JSDOM(html, { url: "http://localhost:8080/" + page });
-      ok(`${page}: marka ube ube w logo`, dom.window.document.querySelector(".logo-word")?.textContent.trim() === "ube ube");
+      ok(`${page}: logo ube ube w nagłówku`, (() => {
+        const i = dom.window.document.querySelector(".logo-img");
+        return i && i.alt === "ube ube" && i.getAttribute("src") === "/assets/logo-dark.png";
+      })());
       ok(`${page}: marka ube ube w <title>`, dom.window.document.title.includes("ube ube"));
     }
     const dom = new JSDOM(fs.readFileSync(path.join(BASE, "index.html"), "utf8"), { url: "http://localhost:8080/index.html", runScripts: "outside-only", pretendToBeVisual: true });

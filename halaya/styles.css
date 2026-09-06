@@ -1403,3 +1403,12 @@ html.js .reveal:nth-child(4) { animation-delay: 0.38s; }
 }
 .add-btn-soon:hover { background: rgba(224, 180, 92, 0.12); }
 .add-btn-soon:active { transform: scale(0.94); }
+
+/* ---------- logo marki ube ube ---------- */
+.logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
+  image-rendering: auto;
+}
+.site-footer .logo-img { height: 40px; }

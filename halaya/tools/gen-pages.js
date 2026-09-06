@@ -13,13 +13,13 @@ const head = (title, desc) => `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title}</title>
   <meta name="description" content="${desc}">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231A0E26'/%3E%3Cellipse cx='16' cy='18' rx='8' ry='10' fill='%238B53C6'/%3E%3Cpath d='M16 6c-1.5 4 1.5 5 0 9' stroke='%23A879D8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
   <meta name="theme-color" content="#140A1D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=7">
+  <link rel="stylesheet" href="/styles.css?v=8">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -32,11 +32,7 @@ const head = (title, desc) => `<!doctype html>
   <header class="site-header" id="siteHeader">
     <div class="wrap header-inner">
       <a class="logo" href="/index.html" aria-label="ube ube - strona główna">
-        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-          <ellipse cx="16" cy="19" rx="8" ry="10" fill="currentColor"/>
-          <path d="M16 7c-1.5 4 1.5 5 0 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-        <span class="logo-word">ube <em>ube</em></span>
+        <img class="logo-img" src="/assets/logo-dark.png" alt="ube ube" width="92" height="96">
       </a>
 
       <nav class="main-nav" aria-label="Główna nawigacja">
@@ -77,11 +73,7 @@ const footer = `  <footer class="site-footer">
     <div class="wrap footer-grid">
       <div class="footer-brand">
         <a class="logo" href="/index.html">
-          <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-            <ellipse cx="16" cy="19" rx="8" ry="10" fill="currentColor"/>
-            <path d="M16 7c-1.5 4 1.5 5 0 9" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-          </svg>
-          <span class="logo-word">ube <em>ube</em></span>
+          <img class="logo-img" src="/assets/logo-dark.png" alt="ube ube" width="92" height="96">
         </a>
         <p>Fioletowe złoto z Filipin. Proszek z ube, świeże bulwy i przepisy - zbierane ręcznie na Luzon, pakowane w chłodzie, u Ciebie w 24 godziny.</p>
       </div>
@@ -265,7 +257,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=7"></script>
+  <script src="/app.js?v=8"></script>
 </body>
 </html>
 `;
