@@ -5,7 +5,7 @@ const { JSDOM, VirtualConsole } = require("jsdom");
 
 const BASE = "/home/user/1312/halaya";
 const PAGES = [
-  "index.html", "sklep.html", "przepisy.html", "o-nas.html", "dostawa.html", "kontakt.html",
+  "index.html", "sklep.html", "przepisy.html", "partnerzy.html", "o-nas.html", "dostawa.html", "kontakt.html",
   "przepisy/lemoniada-ube.html", "przepisy/latte-ube.html", "przepisy/halaya.html", "przepisy/mochi-ube.html",
 ];
 const results = [];
@@ -216,6 +216,114 @@ function auditPage(page) {
       const cur = bc.querySelector(".current");
       ok(`${page}: bieżąca strona podpisana`, !!cur && cur.textContent.trim().length > 0);
       ok(`${page}: breadcrumb zaczyna się od "Strona główna"`, text.startsWith("Strona główna"));
+    }
+  }
+
+  // 10. PROGRAM PARTNERSKI: nawigacja, generator, panel, rabaty, prowizja
+  {
+    // 10a. każda strona ma link Partnerzy
+    for (const page of PAGES) {
+      const html = fs.readFileSync(path.join(BASE, page), "utf8");
+      const dom = new JSDOM(html, { url: "http://localhost:8080/" + page });
+      ok(`${page}: link Partnerzy w nawigacji`, !!dom.window.document.querySelector('.main-nav a[href="/partnerzy.html"]'));
+    }
+
+    // 10b. strona partnerzy: generator + panel z hasłem
+    {
+      const html = fs.readFileSync(path.join(BASE, "partnerzy.html"), "utf8");
+      const dom = new JSDOM(html, { url: "http://localhost:8080/partnerzy.html", runScripts: "outside-only", pretendToBeVisual: true });
+      const { window } = dom;
+      window.matchMedia = () => ({ matches: false });
+      window.HTMLElement.prototype.focus = function () {};
+      const vc = new VirtualConsole();
+      let errs = [];
+      vc.on("jsdomError", (e) => errs.push(String(e)));
+      window.eval(fs.readFileSync(path.join(BASE, "app.js"), "utf8"));
+      const doc = window.document;
+      const submit = (form) => form.dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+      const setVal = (id, v) => { const el = doc.getElementById(id); el.value = v; };
+
+      setVal("partnerCode", "M@!");
+      submit(doc.querySelector("#partnerGenForm"));
+      ok("partnerzy: zły format kodu odrzucony", doc.querySelector("#partnerGenNote").textContent.includes("4-20"));
+      setVal("partnerCode", "MARTA10"); setVal("partnerPass", "abc");
+      submit(doc.querySelector("#partnerGenForm"));
+      ok("partnerzy: za krótkie hasło odrzucone", doc.querySelector("#partnerGenNote").textContent.includes("minimum 4"));
+      setVal("partnerPass", "tajne123");
+      submit(doc.querySelector("#partnerGenForm"));
+      ok("partnerzy: kod wygenerowany", !doc.querySelector("#partnerGenOk").hidden && doc.querySelector("#genCodeOut").textContent === "MARTA10");
+      setVal("partnerCode", "MARTA10"); setVal("partnerPass", "inne123");
+      submit(doc.querySelector("#partnerGenForm"));
+      ok("partnerzy: duplikat odrzucony", doc.querySelector("#partnerGenNote").textContent.includes("zajęty"));
+
+      setVal("panelCode", "MARTA10"); setVal("panelPass", "zlehaslo");
+      submit(doc.querySelector("#partnerPanelForm"));
+      ok("partnerzy: złe hasło odrzucone", doc.querySelector("#panelNote").textContent.includes("Zły kod albo hasło"));
+      setVal("panelPass", "tajne123");
+      submit(doc.querySelector("#partnerPanelForm"));
+      ok("partnerzy: panel otwarty", !doc.querySelector("#panelStats").hidden && doc.querySelector("#panelUses").textContent === "0");
+      ok("partnerzy: brak błędów JS", errs.length === 0);
+    }
+
+    // 10c. sklep: rabat -10% w koszyku i kasie + prowizja 2% po zapłacie
+    {
+      const html = fs.readFileSync(path.join(BASE, "sklep.html"), "utf8");
+      const dom = new JSDOM(html, { url: "http://localhost:8080/sklep.html", runScripts: "outside-only", pretendToBeVisual: true });
+      const { window } = dom;
+      window.matchMedia = () => ({ matches: false });
+      window.Element.prototype.scrollIntoView = function () {};
+      window.HTMLElement.prototype.focus = function () {};
+      // zasiew rejestru: MARTA10, hasło hash djb2("tajne123")
+      const djb2 = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return String(h >>> 0); };
+      window.localStorage.setItem("ubeube-affiliates-v1", JSON.stringify([{ code: "MARTA10", passHash: djb2("tajne123"), uses: 0, commission: 0 }]));
+      const vc = new VirtualConsole();
+      let errs = [];
+      vc.on("jsdomError", (e) => errs.push(String(e)));
+      window.eval(fs.readFileSync(path.join(BASE, "app.js"), "utf8"));
+      const doc = window.document;
+      const click = (el) => el.dispatchEvent(new window.MouseEvent("click", { bubbles: true }));
+      const setVal = (id, v) => { const el = doc.getElementById(id); el.value = v; };
+
+      click(doc.querySelector("[data-add]"));
+      ok("sklep: produkt w koszyku (59,90)", doc.querySelector("#cartCount").textContent === "1");
+
+      setVal("cartCodeInput", "NIEWLASCIWY");
+      click(doc.querySelector("#cartCodeApply"));
+      ok("koszyk: nieznany kod odrzucony", doc.querySelector("#cartCodeNote").textContent.includes("Nie znamy"));
+
+      setVal("cartCodeInput", "marta10");
+      click(doc.querySelector("#cartCodeApply"));
+      ok("koszyk: kod przyjęty (normalizacja wielkości liter)", !doc.querySelector("#cartDiscountRow").hidden);
+      ok("koszyk: rabat -5,99 zł", doc.querySelector("#cartDiscountVal").textContent.includes("5,99"));
+      ok("koszyk: po rabacie 53,91 zł", doc.querySelector("#cartNetTotal").textContent.includes("53,91"));
+      ok("koszyk: kod w nagłówku = po rabacie", doc.querySelector("#cartTotal").textContent.includes("53,91"));
+
+      click(doc.querySelector("#cartOpen"));
+      await new Promise((r) => setTimeout(r, 40));
+      click(doc.querySelector("#checkoutBtn"));
+      await new Promise((r) => setTimeout(r, 40));
+      ok("kasa: kod widoczny w polu", doc.querySelector("#coCodeInput").value === "MARTA10");
+      ok("kasa: total 68,81 (53,91 + kurier 14,90)", doc.querySelector("#checkoutTotal").textContent.includes("68,81"));
+
+      setVal("coEmail", "test@example.com"); setVal("coName", "Jan Kowalski");
+      setVal("coAddress", "Fioletowa 13/2"); setVal("coCity", "Warszawa"); setVal("coZip", "00-001");
+      doc.querySelector("#checkoutForm").dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+      await new Promise((r) => setTimeout(r, 1600));
+      ok("kasa: zamówienie przyjęte", !doc.querySelector("#checkoutStepDone").hidden);
+      const reg = JSON.parse(window.localStorage.getItem("ubeube-affiliates-v1"));
+      ok("prowizja: 1 użycie kodu", reg[0].uses === 1);
+      ok("prowizja: 2% z 53,91 = 1,08", Math.abs(reg[0].commission - 1.0782) < 0.001);
+      ok("kod wyczyszczony po zakupie", !window.localStorage.getItem("ubeube-cartcode-v1"));
+      const realErrs = errs.filter((e) => !e.includes("Not implemented: navigation"));
+      ok("sklep: brak błędów JS", realErrs.length === 0);
+    }
+
+    // 10d. strona główna: promocja partnerska zamiast newslettera z -10%
+    {
+      const html = fs.readFileSync(path.join(BASE, "index.html"), "utf8");
+      ok("index: brak starego newslettera z kodem UBEUBE10", !html.includes("UBEUBE10") && !html.includes("newsletterForm"));
+      ok("index: promocja programu partnerskiego", html.includes("Zostań partnerem") && html.includes("/partnerzy.html"));
+      ok("index: CTA do 5% dla twórców", html.includes("/partnerzy.html#tworcy"));
     }
   }
 

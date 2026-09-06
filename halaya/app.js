@@ -11,6 +11,10 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const FREE_SHIPPING = 149;
   const STORAGE_KEY = "halaya-cart-v1";
+  const AFFILIATE_KEY = "ubeube-affiliates-v1";
+  const CARTCODE_KEY = "ubeube-cartcode-v1";
+  const DISCOUNT_PCT = 10;   // kupujący z kodem płaci 10% mniej
+  const COMMISSION_PCT = 2;  // właściciel kodu zbiera 2% od wartości zamówienia
 
   document.documentElement.classList.add("js");
 
@@ -51,6 +55,51 @@
       const p = PRODUCTS.find((x) => x.id === id);
       return sum + (p ? p.price * qty : 0);
     }, 0);
+
+  /* ---------------- program partnerski ---------------- */
+  // Rejestr kodów twórców: [{ code, passHash, uses, commission }] - demo w localStorage.
+  // Na Shopify: kody rabatowe Shopify + aplikacja afiliacyjna (rejestracja, hasła, wypłaty).
+  let affiliates = [];
+  try { affiliates = JSON.parse(localStorage.getItem(AFFILIATE_KEY)) || []; } catch { affiliates = []; }
+  const saveAffiliates = () => {
+    try { localStorage.setItem(AFFILIATE_KEY, JSON.stringify(affiliates)); } catch { /* tryb prywatny */ }
+  };
+  const normCode = (s) => String(s || "").toUpperCase().replace(/\s+/g, "");
+  const codeValidFormat = (c) => /^[A-Z0-9]{4,20}$/.test(c);
+  const hashPass = (s) => {
+    let h = 5381;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+    return String(h >>> 0);
+  };
+  const findAffiliate = (c) => affiliates.find((a) => a.code === c);
+
+  // Kod rabatowy aktywny w koszyku (10% dla kupującego)
+  let appliedCode = "";
+  try { appliedCode = localStorage.getItem(CARTCODE_KEY) || ""; } catch { appliedCode = ""; }
+  const setAppliedCode = (c) => {
+    appliedCode = c;
+    try { c ? localStorage.setItem(CARTCODE_KEY, c) : localStorage.removeItem(CARTCODE_KEY); } catch { /* tryb prywatny */ }
+  };
+  const discountedSubtotal = () => {
+    const s = cartSubtotal();
+    return appliedCode ? s * (1 - DISCOUNT_PCT / 100) : s;
+  };
+  const discountAmount = () => {
+    const s = cartSubtotal();
+    return appliedCode ? s * (DISCOUNT_PCT / 100) : 0;
+  };
+
+  // Zwraca komunikat błędu albo null przy sukcesie
+  function applyCodeToCart(raw) {
+    const code = normCode(raw);
+    if (!code) return "Podaj kod.";
+    if (!findAffiliate(code)) return "Nie znamy tego kodu. Sprawdź literówkę albo zapytaj twórcę.";
+    if (cartCount() === 0) return "Dodaj najpierw produkty do koszyka.";
+    setAppliedCode(code);
+    renderCart();
+    updateCheckoutTotal();
+    return null;
+  }
 
   /* ---------------- siatka produktów ---------------- */
   const grid = $("#productGrid");
@@ -152,22 +201,15 @@
     setTimeout(() => clone.remove(), 900);
   }
 
-  function goNewsletter() {
-    const box = $("#newsletter");
-    if (box) {
-      box.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
-      const input = $("#newsletterEmail");
-      if (input) input.focus();
-    } else {
-      window.location.href = "/index.html#newsletter";
-    }
+  function goKontakt() {
+    window.location.href = "/kontakt.html";
   }
 
   function addToCart(id, qty = 1, imgEl = null) {
     const p = PRODUCTS.find((x) => x.id === id);
     if (!p) return;
     if (p.soon) {
-      goNewsletter();
+      goKontakt();
       return;
     }
     cart[id] = (cart[id] || 0) + qty;
@@ -184,7 +226,7 @@
   document.addEventListener("click", (e) => {
     const soonBtn = e.target.closest("[data-soon]");
     if (soonBtn) {
-      goNewsletter();
+      goKontakt();
       return;
     }
     const btn = e.target.closest("[data-add]");
@@ -202,9 +244,10 @@
   function renderCart() {
     const count = cartCount();
     const subtotal = cartSubtotal();
+    const net = discountedSubtotal();
     $("#cartCount").textContent = count;
     $("#cartCountDrawer").textContent = `(${count})`;
-    $("#cartTotal").textContent = fmt.format(subtotal);
+    $("#cartTotal").textContent = fmt.format(net);
     $("#cartSubtotal").textContent = fmt.format(subtotal);
 
     const ids = Object.keys(cart);
@@ -220,6 +263,24 @@
       return;
     }
     $("#cartFoot").hidden = false;
+
+    /* wiersze rabatu */
+    const dRow = $("#cartDiscountRow");
+    const netRow = $("#cartNetRow");
+    if (dRow) {
+      if (appliedCode) {
+        dRow.hidden = false;
+        $("#discountCodeName").textContent = appliedCode;
+        $("#cartDiscountVal").textContent = "-" + fmt.format(discountAmount());
+        netRow.hidden = false;
+        $("#cartNetTotal").textContent = fmt.format(net);
+      } else {
+        dRow.hidden = true;
+        netRow.hidden = true;
+      }
+    }
+    const codeInput = $("#cartCodeInput");
+    if (codeInput && !appliedCode) codeInput.value = "";
 
     drawerItems.innerHTML = ids
       .map((id) => {
@@ -245,15 +306,15 @@
       })
       .join("");
 
-    /* pasek darmowej dostawy */
+    /* pasek darmowej dostawy (liczony od kwoty po rabacie) */
     const note = $("#shippingNote");
     note.hidden = false;
-    if (subtotal >= FREE_SHIPPING) {
+    if (net >= FREE_SHIPPING) {
       note.className = "shipping-note ok";
       note.innerHTML = `<strong>Masz darmową dostawę.</strong> Doręczymy jutro kurierem.`;
     } else {
-      const missing = FREE_SHIPPING - subtotal;
-      const pct = Math.min(100, (subtotal / FREE_SHIPPING) * 100);
+      const missing = FREE_SHIPPING - net;
+      const pct = Math.min(100, (net / FREE_SHIPPING) * 100);
       note.className = "shipping-note";
       note.innerHTML = `Brakuje Ci <strong>${fmt.format(missing)}</strong> do darmowej dostawy
         <span class="bar"><i style="width:${pct}%"></i></span>`;
@@ -323,15 +384,26 @@
   const stepDone = $("#checkoutStepDone");
 
   function shippingCost() {
-    if (cartSubtotal() >= FREE_SHIPPING) return 0;
+    if (discountedSubtotal() >= FREE_SHIPPING) return 0;
     const sel = $("input[name='shipping']:checked", checkoutForm);
     return sel ? Number(sel.dataset.cost) : 0;
   }
-  function orderTotal() { return cartSubtotal() + shippingCost(); }
+  function orderTotal() { return discountedSubtotal() + shippingCost(); }
 
   function updateCheckoutTotal() {
-    $("#checkoutTotal").textContent = fmt.format(orderTotal());
-    $("#payBtnAmount").textContent = fmt.format(orderTotal());
+    const total = orderTotal();
+    $("#checkoutTotal").textContent = fmt.format(total);
+    $("#payBtnAmount").textContent = fmt.format(total);
+    const dRow = $("#coDiscountRow");
+    if (dRow) {
+      if (appliedCode) {
+        dRow.hidden = false;
+        $("#coCodeName").textContent = appliedCode;
+        $("#coDiscountVal").textContent = "-" + fmt.format(discountAmount());
+      } else {
+        dRow.hidden = true;
+      }
+    }
   }
 
   function openCheckout() {
@@ -340,8 +412,11 @@
     checkoutForm.reset();
     $$("[data-error-for]", checkoutForm).forEach((el) => (el.textContent = ""));
     $$("input[aria-invalid]", checkoutForm).forEach((el) => el.removeAttribute("aria-invalid"));
-    $("#checkoutTotal").textContent = fmt.format(orderTotal());
-    $("#payBtnAmount").textContent = fmt.format(orderTotal());
+    const coInput = $("#coCodeInput");
+    if (coInput) coInput.value = appliedCode || "";
+    const coNote = $("#coCodeNote");
+    if (coNote) { coNote.textContent = ""; coNote.className = "code-note"; }
+    updateCheckoutTotal();
     checkoutModal.hidden = false;
     checkoutOverlay.hidden = false;
     requestAnimationFrame(() => {
@@ -411,6 +486,16 @@
     renderCheckoutSteps("pay");
     const orderNo = "UBE-" + (1000 + Math.floor(Math.random() * 9000));
     setTimeout(() => {
+      /* naliczenie prowizji 2% dla właściciela kodu */
+      if (appliedCode) {
+        const owner = findAffiliate(appliedCode);
+        if (owner) {
+          owner.uses = (owner.uses || 0) + 1;
+          owner.commission = (owner.commission || 0) + discountedSubtotal() * (COMMISSION_PCT / 100);
+          saveAffiliates();
+        }
+        setAppliedCode("");
+      }
       $("#orderNumber").textContent = orderNo;
       renderCheckoutSteps("done");
       cart = {};
@@ -447,21 +532,135 @@
     setTimeout(() => (toast.hidden = true), 320);
   }
 
-  /* ---------------- newsletter ---------------- */
-  const newsForm = $("#newsletterForm");
-  if (newsForm) newsForm.addEventListener("submit", (e) => {
+  /* ---------------- kod rabatowy: koszyk + kasa ---------------- */
+  const applyFrom = (inputSel, noteSel) => {
+    const input = $(inputSel);
+    const note = $(noteSel);
+    if (!input || !note) return;
+    const err = applyCodeToCart(input.value);
+    if (err) {
+      note.textContent = err;
+      note.className = "code-note error";
+    } else {
+      note.textContent = "";
+      note.className = "code-note";
+      input.value = "";
+      showToast(`Kod -10% aktywny: ${appliedCode}`);
+    }
+  };
+  const cartApplyBtn = $("#cartCodeApply");
+  if (cartApplyBtn) {
+    cartApplyBtn.addEventListener("click", () => applyFrom("#cartCodeInput", "#cartCodeNote"));
+    $("#cartCodeInput").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); cartApplyBtn.click(); }
+    });
+  }
+  const cartRemoveBtn = $("#cartCodeRemove");
+  if (cartRemoveBtn) cartRemoveBtn.addEventListener("click", () => { setAppliedCode(""); renderCart(); });
+  const coApplyBtn = $("#coCodeApply");
+  if (coApplyBtn) {
+    coApplyBtn.addEventListener("click", () => { applyFrom("#coCodeInput", "#coCodeNote"); updateCheckoutTotal(); });
+    $("#coCodeInput").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); coApplyBtn.click(); }
+    });
+  }
+  const coRemoveBtn = $("#coCodeRemove");
+  if (coRemoveBtn) coRemoveBtn.addEventListener("click", () => { setAppliedCode(""); updateCheckoutTotal(); });
+
+  /* ---------------- program partnerski (strona /partnerzy.html) ---------------- */
+  function copyText(btn, text) {
+    const done = () => {
+      const label = btn.dataset.label || "Kopiuj";
+      btn.textContent = "Skopiowano";
+      setTimeout(() => (btn.textContent = label), 1600);
+    };
+    const fallback = () => {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch { /* demo */ }
+      ta.remove();
+      done();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-copy]");
+    if (!b) return;
+    const el = document.getElementById(b.dataset.copy);
+    if (el) copyText(b, el.textContent.trim());
+  });
+
+  const genForm = $("#partnerGenForm");
+  if (genForm) genForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const email = $("#newsletterEmail");
-    const note = $("#newsletterNote");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
-      note.textContent = "Podaj poprawny adres e-mail, żeby odebrać kod.";
+    const code = normCode($("#partnerCode").value);
+    const pass = $("#partnerPass").value;
+    const note = $("#partnerGenNote");
+    const okBox = $("#partnerGenOk");
+    if (!codeValidFormat(code)) {
+      note.textContent = "Kod: 4-20 znaków, tylko litery i cyfry.";
       note.className = "form-note error";
-      email.focus();
+      okBox.hidden = true;
       return;
     }
+    if (pass.length < 4) {
+      note.textContent = "Hasło: minimum 4 znaki.";
+      note.className = "form-note error";
+      okBox.hidden = true;
+      return;
+    }
+    if (findAffiliate(code)) {
+      note.textContent = "Ten kod jest już zajęty. Wybierz inny.";
+      note.className = "form-note error";
+      okBox.hidden = true;
+      return;
+    }
+    affiliates.push({ code, passHash: hashPass(pass), uses: 0, commission: 0 });
+    saveAffiliates();
     note.className = "form-note";
-    note.textContent = "Gotowe! Kod UBEUBE10 właśnie leci na Twoją skrzynkę.";
-    email.value = "";
+    note.textContent = "";
+    $("#genCodeOut").textContent = code;
+    $("#genPassOut").textContent = pass;
+    okBox.hidden = false;
+    genForm.reset();
+  });
+
+  const panelForm = $("#partnerPanelForm");
+  if (panelForm) panelForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const code = normCode($("#panelCode").value);
+    const pass = $("#panelPass").value;
+    const note = $("#panelNote");
+    const stats = $("#panelStats");
+    const owner = findAffiliate(code);
+    if (!owner || hashPass(pass) !== owner.passHash) {
+      note.textContent = "Zły kod albo hasło.";
+      note.className = "form-note error";
+      stats.hidden = true;
+      return;
+    }
+    note.textContent = "";
+    note.className = "form-note";
+    $("#panelCodeOut").textContent = owner.code;
+    $("#panelUses").textContent = owner.uses;
+    $("#panelCommission").textContent = fmt.format(owner.commission);
+    $("#panelShare").textContent = `Kup z kodem ${owner.code} i dostaniesz -10% na ubeube`;
+    panelForm.hidden = true;
+    stats.hidden = false;
+  });
+  const panelLogout = $("#panelLogout");
+  if (panelLogout) panelLogout.addEventListener("click", () => {
+    const stats = $("#panelStats");
+    stats.hidden = true;
+    const form = $("#partnerPanelForm");
+    form.hidden = false;
+    form.reset();
   });
 
   /* ---------------- formularz kontaktowy ---------------- */

@@ -19,7 +19,7 @@ const head = (title, desc) => `<!doctype html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=14">
+  <link rel="stylesheet" href="/styles.css?v=17">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -39,6 +39,7 @@ const head = (title, desc) => `<!doctype html>
       <nav class="main-nav" aria-label="Główna nawigacja">
         ${nav("/sklep.html", "Sklep", active)}
         ${nav("/przepisy.html", "Przepisy", active)}
+        ${nav("/partnerzy.html", "Partnerzy", active)}
         ${nav("/o-nas.html", "O nas", active)}
         ${nav("/dostawa.html", "Dostawa", active)}
         ${nav("/kontakt.html", "Kontakt", active)}
@@ -87,6 +88,7 @@ const footer = `  <footer class="site-footer">
         <a href="/sklep.html">Proszek z ube</a>
         <a href="/sklep.html">Wszystkie produkty</a>
         <a href="/przepisy.html">Przepisy</a>
+        <a href="/partnerzy.html">Program partnerski</a>
       </nav>
       <nav class="footer-col" aria-label="Pomoc">
         <h3>Pomoc</h3>
@@ -104,7 +106,7 @@ const footer = `  <footer class="site-footer">
     </div>
     <div class="wrap footer-bottom">
       <p>© 2026 ube ube · Fioletowe złoto z Filipin</p>
-      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v16</span></p>
+      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v17</span></p>
       <svg class="barcode" viewBox="0 0 90 22" aria-hidden="true"><path d="M2 2v18M7 2v18M11 2v18M16 2v18M23 2v18M27 2v18M33 2v18M36 2v18M42 2v18M48 2v18M55 2v18M61 2v18M66 2v18M73 2v18M77 2v18M83 2v18M88 2v18" stroke="currentColor" stroke-width="1.6"/></svg>
     </div>
   </footer>
@@ -129,6 +131,20 @@ const chromeEnd = `
       <div class="cart-row">
         <span>Wartość koszyka</span>
         <strong id="cartSubtotal">0,00 zł</strong>
+      </div>
+      <div class="code-entry">
+        <label class="visually-hidden" for="cartCodeInput">Kod rabatowy</label>
+        <input type="text" id="cartCodeInput" placeholder="Kod rabatowy" autocomplete="off" spellcheck="false">
+        <button class="btn btn-ghost btn-sm" type="button" id="cartCodeApply">Zastosuj</button>
+      </div>
+      <p class="code-note" id="cartCodeNote" aria-live="polite"></p>
+      <div class="cart-row" id="cartDiscountRow" hidden>
+        <span>Rabat <span class="code-chip" id="discountCodeName"></span> (-10%) <button class="remove-btn" type="button" id="cartCodeRemove">usuń</button></span>
+        <strong id="cartDiscountVal"></strong>
+      </div>
+      <div class="cart-row" id="cartNetRow" hidden>
+        <span>Po rabacie</span>
+        <strong id="cartNetTotal"></strong>
       </div>
       <p class="cart-hint">Dostawę i płatność wybierzesz w kasie. Zwrot do 14 dni.</p>
       <button class="btn btn-primary btn-block" id="checkoutBtn">Do kasy
@@ -214,6 +230,20 @@ const chromeEnd = `
           </label>
         </fieldset>
 
+        <fieldset>
+          <legend>Kod rabatowy</legend>
+          <div class="code-entry">
+            <label class="visually-hidden" for="coCodeInput">Kod rabatowy</label>
+            <input type="text" id="coCodeInput" placeholder="np. MARTA10" autocomplete="off" spellcheck="false">
+            <button class="btn btn-ghost btn-sm" type="button" id="coCodeApply">Zastosuj</button>
+          </div>
+          <p class="code-note" id="coCodeNote" aria-live="polite"></p>
+          <div class="cart-row" id="coDiscountRow" hidden>
+            <span>Rabat <span class="code-chip" id="coCodeName"></span> (-10%) <button class="remove-btn" type="button" id="coCodeRemove">usuń</button></span>
+            <strong id="coDiscountVal"></strong>
+          </div>
+        </fieldset>
+
         <div class="cart-row cart-row-total">
           <span>Razem</span>
           <strong id="checkoutTotal">0,00 zł</strong>
@@ -249,6 +279,7 @@ const chromeEnd = `
     <nav aria-label="Menu mobilne">
       <a href="/sklep.html">Sklep</a>
       <a href="/przepisy.html">Przepisy</a>
+      <a href="/partnerzy.html">Partnerzy</a>
       <a href="/o-nas.html">O nas</a>
       <a href="/dostawa.html">Dostawa</a>
       <a href="/kontakt.html">Kontakt</a>
@@ -262,7 +293,7 @@ const chromeEnd = `
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=14"></script>
+  <script src="/app.js?v=17"></script>
 </body>
 </html>
 `;
@@ -714,6 +745,121 @@ ${chips("30 minut", "10 sztuk", "Średni")}
           )}
         </div>
         <div class="tip"><strong>Wskazówka</strong>Nie pomijaj skrobi - bez niej mochi przyklei się do talerza i do rąk. Nadzienie z mascarpone z łyżeczką proszku z ube to najszybsza wersja, halaya jest bardziej klasyczna.</div>`);
+
+
+// --- PARTNERZY (program partnerski) ---
+active = "/partnerzy.html";
+let partnerzy = `
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        ${breadcrumb([[null, "Partnerzy"]])}
+        <h1 class="display reveal">Program partnerski</h1>
+        <p class="lead reveal">Wygeneruj swój kod i podaj go dalej. Kupujący z Twoim kodem płacą 10% mniej, a Ty zbierasz 2% od wartości każdego takiego zamówienia.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <ol class="process-list">
+          <li>
+            <span class="process-num" aria-hidden="true">1</span>
+            <h3>Generujesz kod</h3>
+            <p>Wymyślasz własny kod - np. MARTA10. Razem z nim ustawiasz hasło do swojego panelu.</p>
+          </li>
+          <li>
+            <span class="process-num" aria-hidden="true">2</span>
+            <h3>Udostępniasz go</h3>
+            <p>Instagram, TikTok, znajomi - gdziekolwiek chcesz. Każdy, kto użyje kodu przy zakupie, dostaje -10%.</p>
+          </li>
+          <li>
+            <span class="process-num" aria-hidden="true">3</span>
+            <h3>Zbierasz 2%</h3>
+            <p>Od wartości każdego zamówienia z Twoim kodem (bez kosztów dostawy). Wpływy śledzisz w swoim panelu.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="generuj">
+      <div class="wrap partner-grid">
+        <div class="contact-form-box">
+          <h2 class="display-sm" style="margin-bottom:20px">Wygeneruj swój kod</h2>
+          <form id="partnerGenForm" novalidate>
+            <div class="field">
+              <label for="partnerCode">Twój kod</label>
+              <input type="text" id="partnerCode" placeholder="np. MARTA10" autocomplete="off" spellcheck="false" required>
+              <p class="field-error" style="font-size:.8rem;color:var(--muted)">4-20 znaków, tylko litery i cyfry.</p>
+            </div>
+            <div class="field">
+              <label for="partnerPass">Hasło do panelu</label>
+              <input type="password" id="partnerPass" autocomplete="new-password" required>
+              <p class="field-error" style="font-size:.8rem;color:var(--muted)">Minimum 4 znaki. Zapamiętaj je - bez hasła nie otworzysz panelu.</p>
+            </div>
+            <button class="btn btn-primary" type="submit">Wygeneruj kod</button>
+            <p class="form-note error" id="partnerGenNote" aria-live="polite"></p>
+          </form>
+          <div class="affiliate-result" id="partnerGenOk" hidden>
+            <p>Twój kod:</p>
+            <code class="big-code" id="genCodeOut"></code>
+            <p>Hasło do panelu:</p>
+            <code class="big-code" id="genPassOut"></code>
+            <div class="share-line">
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="genCodeOut" data-label="Kopiuj kod">Kopiuj kod</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="genPassOut" data-label="Kopiuj hasło">Kopiuj hasło</button>
+            </div>
+            <p class="form-note">Kod i hasło zapisaliśmy w tej przeglądarce (wersja demo - na Shopify dostaniesz prawdziwe konto).</p>
+          </div>
+        </div>
+
+        <div class="contact-form-box">
+          <h2 class="display-sm" style="margin-bottom:20px">Panel twórcy</h2>
+          <form id="partnerPanelForm" novalidate>
+            <div class="field">
+              <label for="panelCode">Twój kod</label>
+              <input type="text" id="panelCode" autocomplete="off" spellcheck="false" required>
+            </div>
+            <div class="field">
+              <label for="panelPass">Hasło</label>
+              <input type="password" id="panelPass" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Zaloguj</button>
+            <p class="form-note error" id="panelNote" aria-live="polite"></p>
+          </form>
+          <div id="panelStats" hidden>
+            <div class="stat-grid">
+              <div class="stat"><strong id="panelUses">0</strong><span>zamówień z Twoim kodem</span></div>
+              <div class="stat"><strong id="panelCommission">0,00 zł</strong><span>Twoja prowizja (2%)</span></div>
+            </div>
+            <div class="share-line">
+              <span>Kod do udostępnienia:</span>
+              <span class="code-chip" id="panelCodeOut"></span>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="panelCodeOut" data-label="Kopiuj">Kopiuj</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="panelShare" data-label="Kopiuj tekst">Kopiuj tekst promocji</button>
+            </div>
+            <p class="visually-hidden" id="panelShare"></p>
+            <button class="btn btn-ghost btn-sm" type="button" id="panelLogout" style="margin-top:14px">Wyloguj</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tworcy">
+      <div class="wrap">
+        <div class="tip">
+          <strong>Masz 10 000+ obserwujących na TikToku lub Instagramie?</strong>
+          Dla większych twórców przygotowujemy współpracę indywidualną z prowizją 5%. Napisz do nas - odezwiemy się w 24 godziny z warunkami.
+        </div>
+        <div class="promo-cta" style="margin-top:24px">
+          <a class="btn btn-primary" href="/kontakt.html">Napisz do nas
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="mailto:czesc@ubeube.pl">czesc@ubeube.pl</a>
+        </div>
+      </div>
+    </section>
+  </main>`;
+fs.writeFileSync(path.join(OUT, "partnerzy.html"), head("Program partnerski - ube ube | Twój kod, Twoje 2%", "Program partnerski ube ube: wygeneruj swój kod, kupujący dostają -10%, a Ty zbierasz 2% od wartości zamówienia. Twórcy 10k+ - współpraca z prowizją 5%.") + partnerzy + footer + chromeEnd);
 
 console.log("Wygenerowano strony:");
 console.log(fs.readdirSync(OUT).filter((f) => f.endsWith(".html")).join(", "));

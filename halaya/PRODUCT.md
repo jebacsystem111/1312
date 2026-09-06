@@ -46,3 +46,12 @@ Użytkownik trafia z social media lub rekomendacji. Scena zakupowa: dodanie prod
 Rzemieślniczo, konkretnie, ciepło. Zero slangu korpo, zero „premium AI-marketingu". Fiolet jest materiałem (kolor produktu), nie gradientem. Trzy słowa: **stragan, papier, fiolet**.
 
 - Opóźnienia: w niektórych sytuacjach dostawa może potrwać do 2 tygodni (partie z Luzon + kontrola jakości); zawsze informujemy mailem. To jest w UI.
+
+## Program partnerski
+
+- Każdy może wygenerować własny kod (format: 4-20 znaków, litery i cyfry; unikalny).
+- Kupujący z kodem dostaje -10% od wartości zamówienia.
+- Właściciel kodu zbiera 2% od wartości zamówienia (po rabacie, bez kosztów dostawy).
+- Panel twórcy chroniony hasłem: licznik użyć kodu + narosła prowizja.
+- Twórcy 10k+ obserwujących (TikTok/Instagram): współpraca indywidualna z prowizją 5%, po bezpośrednim kontakcie.
+- Wersja demo trzyma rejestr w localStorage; na Shopify: kody rabatowe Shopify + aplikacja afiliacyjna (rejestracja, hasła, wypłaty) + umowy z twórcami 10k+.

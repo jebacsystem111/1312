@@ -37,6 +37,10 @@ Fraunces (display, italic dla słów-akcentów) + Space Grotesk (UI). Ceny i ilo
 4. Marquee — tekstura świata, pauza na hover.
 5. Wszystko z `prefers-reduced-motion`; akcje częste (qty) bez animacji lub ledwo wyczuwalne.
 
+## Program partnerski (widok)
+
+Strona Partnerzy: dwie kolumny formularzy (generator + panel) na podniesionych kartach, wynik generatora w złotej kreskowanej ramce, statystyki panelu jako kafle z cyframi w kolorze ube. Pole kodu rabatowego w koszyku i kasie: pigułkowe pole + przycisk Zastosuj, wiersz rabatu z zieloną kwotą i chipem kodu.
+
 ## Stany
 
 Hover, focus-visible (ring), disabled, loading (kasa), pusty koszyk, błędy formularzy z nazwą problemu i naprawą. `::selection`, scrollbar i caret z palety.

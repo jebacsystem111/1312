@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O nas - ube ube | Fiolet, który nas połączył</title>
-  <meta name="description" content="Historia sklepu ube ube: ube z rodzinnych plantacji doliny Pampanga, zbiór ręczny i zero barwników.">
+  <title>Program partnerski - ube ube | Twój kod, Twoje 2%</title>
+  <meta name="description" content="Program partnerski ube ube: wygeneruj swój kod, kupujący dostają -10%, a Ty zbierasz 2% od wartości zamówienia. Twórcy 10k+ - współpraca z prowizją 5%.">
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <meta name="theme-color" content="#140A1D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,8 +31,8 @@
       <nav class="main-nav" aria-label="Główna nawigacja">
                 <a href="/sklep.html">Sklep</a>
                 <a href="/przepisy.html">Przepisy</a>
-                <a href="/partnerzy.html">Partnerzy</a>
-                <a href="/o-nas.html" aria-current="page">O nas</a>
+                <a href="/partnerzy.html" aria-current="page">Partnerzy</a>
+                <a href="/o-nas.html">O nas</a>
                 <a href="/dostawa.html">Dostawa</a>
                 <a href="/kontakt.html">Kontakt</a>
       </nav>
@@ -54,52 +54,108 @@
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        <nav class="breadcrumb" aria-label="Okruszki"><a href="/index.html">Strona główna</a><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="current">O nas</span></nav>
-        <h1 class="display reveal">O nas</h1>
-        <p class="lead reveal">Wszystko zaczęło się od jednego stołu z ube na bazarze w Manili. Dziś ten sam fiolet dowozimy do kuchni w całej Polsce.</p>
+        <nav class="breadcrumb" aria-label="Okruszki"><a href="/index.html">Strona główna</a><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="current">Partnerzy</span></nav>
+        <h1 class="display reveal">Program partnerski</h1>
+        <p class="lead reveal">Wygeneruj swój kod i podaj go dalej. Kupujący z Twoim kodem płacą 10% mniej, a Ty zbierasz 2% od wartości każdego takiego zamówienia.</p>
       </div>
     </section>
 
-    <section class="story section">
-      <div class="wrap story-grid">
-        <figure class="story-photo">
-          <img src="/assets/story.jpg" alt="Dłonie zbieracza trzymające świeżo wykopane bulwy ube nad wiklinową skrzynką" width="1024" height="1024" loading="lazy">
-          <figcaption>Plantacje w dolinie rzeki Pampanga, Luzon</figcaption>
-        </figure>
-        <div class="story-copy">
-          <h2 class="display-sm">Fiolet, który nas <em>połączył</em></h2>
-          <p>Ube to na Filipinach więcej niż składnik - to kolor niedzielnych deserów, ulicznych straganów i domów, w których zawsze pachnie wanilią. Fioletowy pochrzyn (Dioscorea alata) rośnie tam od ponad dwóch tysięcy lat.</p>
-          <p>Nasze ube pochodzi z doliny Pampanga na Luzon, gdzie fioletowy pochrzyn uprawia się od ponad dwóch tysięcy lat. Bulwy zbierane są ręcznie, a antocyjany - naturalny barwnik ube - dotrą do Ciebie w pełnej krasie.</p>
-          <ul class="fact-ticket">
-            <li><strong>2000 lat</strong><span>uprawy na Filipinach - ube jest starsze niż Manila</span></li>
-            <li><strong>Antocyjany</strong><span>naturalny fiolet, bez barwników i aromatów</span></li>
-            <li><strong>Zbiór ręczny</strong><span>bulwa po bulwie, jak od dwóch tysięcy lat</span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="wartosci">
+    <section class="section">
       <div class="wrap">
-        <div class="section-head">
-          <h2 class="display-sm">Nasze zasady</h2>
+        <ol class="process-list">
+          <li>
+            <span class="process-num" aria-hidden="true">1</span>
+            <h3>Generujesz kod</h3>
+            <p>Wymyślasz własny kod - np. MARTA10. Razem z nim ustawiasz hasło do swojego panelu.</p>
+          </li>
+          <li>
+            <span class="process-num" aria-hidden="true">2</span>
+            <h3>Udostępniasz go</h3>
+            <p>Instagram, TikTok, znajomi - gdziekolwiek chcesz. Każdy, kto użyje kodu przy zakupie, dostaje -10%.</p>
+          </li>
+          <li>
+            <span class="process-num" aria-hidden="true">3</span>
+            <h3>Zbierasz 2%</h3>
+            <p>Od wartości każdego zamówienia z Twoim kodem (bez kosztów dostawy). Wpływy śledzisz w swoim panelu.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="generuj">
+      <div class="wrap partner-grid">
+        <div class="contact-form-box">
+          <h2 class="display-sm" style="margin-bottom:20px">Wygeneruj swój kod</h2>
+          <form id="partnerGenForm" novalidate>
+            <div class="field">
+              <label for="partnerCode">Twój kod</label>
+              <input type="text" id="partnerCode" placeholder="np. MARTA10" autocomplete="off" spellcheck="false" required>
+              <p class="field-error" style="font-size:.8rem;color:var(--muted)">4-20 znaków, tylko litery i cyfry.</p>
+            </div>
+            <div class="field">
+              <label for="partnerPass">Hasło do panelu</label>
+              <input type="password" id="partnerPass" autocomplete="new-password" required>
+              <p class="field-error" style="font-size:.8rem;color:var(--muted)">Minimum 4 znaki. Zapamiętaj je - bez hasła nie otworzysz panelu.</p>
+            </div>
+            <button class="btn btn-primary" type="submit">Wygeneruj kod</button>
+            <p class="form-note error" id="partnerGenNote" aria-live="polite"></p>
+          </form>
+          <div class="affiliate-result" id="partnerGenOk" hidden>
+            <p>Twój kod:</p>
+            <code class="big-code" id="genCodeOut"></code>
+            <p>Hasło do panelu:</p>
+            <code class="big-code" id="genPassOut"></code>
+            <div class="share-line">
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="genCodeOut" data-label="Kopiuj kod">Kopiuj kod</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="genPassOut" data-label="Kopiuj hasło">Kopiuj hasło</button>
+            </div>
+            <p class="form-note">Kod i hasło zapisaliśmy w tej przeglądarce (wersja demo - na Shopify dostaniesz prawdziwe konto).</p>
+          </div>
         </div>
-        <div class="values-grid">
-          <div class="value">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21c-4-3-8-6-8-11a8 8 0 0 1 16 0c0 5-4 8-8 11z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <h3>Z Luzon</h3>
-            <p>Nasze ube pochodzi z plantacji doliny Pampanga, serca upraw fioletowego pochrzynu na Filipinach.</p>
+
+        <div class="contact-form-box">
+          <h2 class="display-sm" style="margin-bottom:20px">Panel twórcy</h2>
+          <form id="partnerPanelForm" novalidate>
+            <div class="field">
+              <label for="panelCode">Twój kod</label>
+              <input type="text" id="panelCode" autocomplete="off" spellcheck="false" required>
+            </div>
+            <div class="field">
+              <label for="panelPass">Hasło</label>
+              <input type="password" id="panelPass" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Zaloguj</button>
+            <p class="form-note error" id="panelNote" aria-live="polite"></p>
+          </form>
+          <div id="panelStats" hidden>
+            <div class="stat-grid">
+              <div class="stat"><strong id="panelUses">0</strong><span>zamówień z Twoim kodem</span></div>
+              <div class="stat"><strong id="panelCommission">0,00 zł</strong><span>Twoja prowizja (2%)</span></div>
+            </div>
+            <div class="share-line">
+              <span>Kod do udostępnienia:</span>
+              <span class="code-chip" id="panelCodeOut"></span>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="panelCodeOut" data-label="Kopiuj">Kopiuj</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-copy="panelShare" data-label="Kopiuj tekst">Kopiuj tekst promocji</button>
+            </div>
+            <p class="visually-hidden" id="panelShare"></p>
+            <button class="btn btn-ghost btn-sm" type="button" id="panelLogout" style="margin-top:14px">Wyloguj</button>
           </div>
-          <div class="value">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7l8-4 8 4v10l-8 4-8-4V7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 7l8 4 8-4M12 11v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <h3>Zbiór ręczny</h3>
-            <p>Bulwy wykopywane i sortowane są ręcznie, tak jak na Luzon od pokoleń.</p>
-          </div>
-          <div class="value">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2z"/></svg>
-            <h3>Zero barwników</h3>
-            <p>Kolor pochodzi wyłącznie z antocyjanów bulwy. Żadnych aromatów, żadnych dodatków - sam fiolet.</p>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tworcy">
+      <div class="wrap">
+        <div class="tip">
+          <strong>Masz 10 000+ obserwujących na TikToku lub Instagramie?</strong>
+          Dla większych twórców przygotowujemy współpracę indywidualną z prowizją 5%. Napisz do nas - odezwiemy się w 24 godziny z warunkami.
+        </div>
+        <div class="promo-cta" style="margin-top:24px">
+          <a class="btn btn-primary" href="/kontakt.html">Napisz do nas
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="mailto:czesc@ubeube.pl">czesc@ubeube.pl</a>
         </div>
       </div>
     </section>

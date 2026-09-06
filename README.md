@@ -8,6 +8,8 @@ Sklep internetowy marki **ube ube** sprzedający ube (fioletowy pochrzyn z Filip
 
 Katalog: Proszek z ube 100 g (59,90 zł, w sprzedaży) + Dżem z ube 250 g (32,90 zł) i Syrop z ube 125 ml (29,90 zł) jako zapowiedzi „Wkrótce" - widoczne z ceną, ale z blokadą dodania do koszyka i przyciskiem „Powiadom mnie".
 
+Program partnerski (`partnerzy.html`): każdy generuje własny kod (nick, 4-20 znaków); kupujący z kodem dostaje -10%, właściciel zbiera 2% od wartości zamówienia; panel twórcy chroniony hasłem (licznik użyć + prowizja); twórcy 10k+ na TikToku/Instagramie mogą ubiegać się o współpracę 5% przez kontakt. Demo trzyma rejestr w localStorage - na Shopify to kody rabatowe + aplikacja afiliacyjna.
+
 Struktura wielostronicowa (mapowana 1:1 na Shopify: strona główna, kolekcja, blog z artykułami, podstrony):
 
 - `index.html` — strona główna (hero, marquee, bestseller, historia, proces, opinie, newsletter)

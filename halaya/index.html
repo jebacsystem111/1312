@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>html{background:#140A1D}body{background:#140A1D;color:#F5EDFB;margin:0}</style>
-  <link rel="stylesheet" href="/styles.css?v=14">
+  <link rel="stylesheet" href="/styles.css?v=17">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -34,6 +34,7 @@
       <nav class="main-nav" aria-label="Główna nawigacja">
         <a href="/sklep.html">Sklep</a>
         <a href="/przepisy.html">Przepisy</a>
+        <a href="/partnerzy.html">Partnerzy</a>
         <a href="/o-nas.html">O nas</a>
         <a href="/dostawa.html">Dostawa</a>
         <a href="/kontakt.html">Kontakt</a>
@@ -241,20 +242,18 @@
       </div>
     </section>
 
-    <!-- ============ NEWSLETTER ============ -->
-    <section class="newsletter section" id="newsletter">
+    <!-- ============ PROGRAM PARTNERSKI ============ -->
+    <section class="newsletter section" id="partnerzy">
       <div class="wrap">
         <div class="newsletter-box">
           <div class="newsletter-copy">
-            <h2 class="display-sm">10% na pierwsze zamówienie</h2>
-            <p>Zapisz się, a kod <strong>UBEUBE10</strong> dostaniesz od razu. Raz w miesiącu: nowe partie, przepisy i zero spamu.</p>
+            <h2 class="display-sm">Zostań partnerem <em>ube ube</em></h2>
+            <p>Wygeneruj swój kod i podaj go dalej. Każdy, kto kupi z Twoim kodem, płaci <strong>10% mniej</strong>, a Ty zbierasz <strong>2%</strong> od wartości każdego takiego zamówienia.</p>
           </div>
-          <form class="newsletter-form" id="newsletterForm" novalidate>
-            <label class="visually-hidden" for="newsletterEmail">Twój e-mail</label>
-            <input type="email" id="newsletterEmail" name="email" placeholder="twoj@email.pl" autocomplete="email" required>
-            <button class="btn btn-gold" type="submit">Odbieram 10%</button>
-            <p class="form-note" id="newsletterNote" aria-live="polite"></p>
-          </form>
+          <div class="promo-cta">
+            <a class="btn btn-gold" href="/partnerzy.html">Wygeneruj swój kod</a>
+            <a class="btn btn-ghost" href="/partnerzy.html#tworcy">Twórcy 10k+ → 5%</a>
+          </div>
         </div>
       </div>
     </section>
@@ -274,6 +273,7 @@
         <a href="/sklep.html">Proszek z ube</a>
         <a href="/sklep.html">Wszystkie produkty</a>
         <a href="/przepisy.html">Przepisy</a>
+        <a href="/partnerzy.html">Program partnerski</a>
       </nav>
       <nav class="footer-col" aria-label="Pomoc">
         <h3>Pomoc</h3>
@@ -291,7 +291,7 @@
     </div>
     <div class="wrap footer-bottom">
       <p>© 2026 ube ube · Fioletowe złoto z Filipin</p>
-      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v15</span></p>
+      <p class="footer-pay">BLIK · Visa · Mastercard · Przelew24 <span class="build-ver">build v17</span></p>
       <svg class="barcode" viewBox="0 0 90 22" aria-hidden="true"><path d="M2 2v18M7 2v18M11 2v18M16 2v18M23 2v18M27 2v18M33 2v18M36 2v18M42 2v18M48 2v18M55 2v18M61 2v18M66 2v18M73 2v18M77 2v18M83 2v18M88 2v18" stroke="currentColor" stroke-width="1.6"/></svg>
     </div>
   </footer>
@@ -314,6 +314,20 @@
       <div class="cart-row">
         <span>Wartość koszyka</span>
         <strong id="cartSubtotal">0,00 zł</strong>
+      </div>
+      <div class="code-entry">
+        <label class="visually-hidden" for="cartCodeInput">Kod rabatowy</label>
+        <input type="text" id="cartCodeInput" placeholder="Kod rabatowy" autocomplete="off" spellcheck="false">
+        <button class="btn btn-ghost btn-sm" type="button" id="cartCodeApply">Zastosuj</button>
+      </div>
+      <p class="code-note" id="cartCodeNote" aria-live="polite"></p>
+      <div class="cart-row" id="cartDiscountRow" hidden>
+        <span>Rabat <span class="code-chip" id="discountCodeName"></span> (-10%) <button class="remove-btn" type="button" id="cartCodeRemove">usuń</button></span>
+        <strong id="cartDiscountVal"></strong>
+      </div>
+      <div class="cart-row" id="cartNetRow" hidden>
+        <span>Po rabacie</span>
+        <strong id="cartNetTotal"></strong>
       </div>
       <p class="cart-hint">Dostawę i płatność wybierzesz w kasie. Zwrot do 14 dni.</p>
       <button class="btn btn-primary btn-block" id="checkoutBtn">Do kasy
@@ -399,6 +413,20 @@
           </label>
         </fieldset>
 
+        <fieldset>
+          <legend>Kod rabatowy</legend>
+          <div class="code-entry">
+            <label class="visually-hidden" for="coCodeInput">Kod rabatowy</label>
+            <input type="text" id="coCodeInput" placeholder="np. MARTA10" autocomplete="off" spellcheck="false">
+            <button class="btn btn-ghost btn-sm" type="button" id="coCodeApply">Zastosuj</button>
+          </div>
+          <p class="code-note" id="coCodeNote" aria-live="polite"></p>
+          <div class="cart-row" id="coDiscountRow" hidden>
+            <span>Rabat <span class="code-chip" id="coCodeName"></span> (-10%) <button class="remove-btn" type="button" id="coCodeRemove">usuń</button></span>
+            <strong id="coDiscountVal"></strong>
+          </div>
+        </fieldset>
+
         <div class="cart-row cart-row-total">
           <span>Razem</span>
           <strong id="checkoutTotal">0,00 zł</strong>
@@ -434,6 +462,7 @@
     <nav aria-label="Menu mobilne">
       <a href="/sklep.html">Sklep</a>
       <a href="/przepisy.html">Przepisy</a>
+      <a href="/partnerzy.html">Partnerzy</a>
       <a href="/o-nas.html">O nas</a>
       <a href="/dostawa.html">Dostawa</a>
       <a href="/kontakt.html">Kontakt</a>
@@ -447,6 +476,6 @@
     <p class="noscript">Sklep działa w pełni z włączonym JavaScript. Włącz go, żeby dodać produkty do koszyka.</p>
   </noscript>
 
-  <script src="/app.js?v=14"></script>
+  <script src="/app.js?v=17"></script>
 </body>
 </html>
