@@ -28,7 +28,6 @@ repozytorium (`emilskills/`, `gust/`, `impeccableskills/`).
 | `assets/style.css` | Wspólny arkusz stylów całego serwisu |
 | `assets/*.jpg` | Zdjęcia (nowe, podmienione za zgodą klienta) |
 | `assets/logo2.jpg` | Lokalna kopia oryginalnego logo (fallback podglądu) |
-| `assets/logo.png` | Oryginalne logo w PNG (w hero na stronie głównej) |
 | `tools/build_site.py` | Generator stron (wspólny szablon + treści) |
 
 ## Ważne ustalenia

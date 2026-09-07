@@ -248,9 +248,8 @@ home_body = f'''
   <section class="hero">
     <div class="container">
       <div class="hero-copy">
-        <div class="hero-logo enter enter-1"><img src="assets/logo.png" alt="ROLTAR" width="200" height="200"></div>
-        <h1 class="enter enter-2">Rolety, bramy i osłony okienne <span class="accent">od 1999 roku</span></h1>
-        <p class="sub enter enter-3">Producent i wykonawca z Tarnowa. Produkujemy, sprzedajemy i montujemy osłony okienne dla klientów indywidualnych i instytucjonalnych, z 24-miesięczną gwarancją.</p>
+        <h1 class="enter enter-1">Rolety, bramy i osłony okienne <span class="accent">od 1999 roku</span></h1>
+        <p class="sub enter enter-2">Producent i wykonawca z Tarnowa. Produkujemy, sprzedajemy i montujemy osłony okienne dla klientów indywidualnych i instytucjonalnych, z 24-miesięczną gwarancją.</p>
         <div class="cta-row enter enter-3">
           <a class="btn btn-primary" href="tel:+48146265385">{I["phone"]}Zadzwoń: 14 626 53 85</a>
           <a class="btn btn-ghost" href="#oferta">Zobacz ofertę{I["arrow"]}</a>

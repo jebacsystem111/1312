@@ -104,9 +104,6 @@ html{scrollbar-color:var(--dark-3) var(--bg-soft)}
   radial-gradient(700px 400px at -10% 110%,rgba(90,105,125,.18),transparent 60%);pointer-events:none}
 .hero .container{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:52px;align-items:center;padding-top:64px;padding-bottom:72px}
 .hero-copy{min-width:0}
-.hero-logo{display:inline-flex;margin-bottom:22px;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 20px 44px -22px rgba(0,0,0,.55)}
-.hero-logo img{height:96px;width:auto;display:block}
-@media(max-width:620px){.hero-logo img{height:72px}}
 .hero h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:-.022em;font-weight:800;max-width:16ch;text-wrap:balance}
 .hero h1 .accent{color:var(--accent)}
 .hero .sub{margin-top:20px;font-size:1.05rem;color:var(--muted-light);max-width:52ch}
