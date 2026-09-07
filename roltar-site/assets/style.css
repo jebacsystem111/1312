@@ -261,3 +261,16 @@ html{scrollbar-color:var(--dark-3) var(--bg-soft)}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .enter{opacity:1;animation:none}
 }
+
+/* --- strony szczegółowe: cechy, modele --- */
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;margin-top:20px}
+.checklist li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;color:var(--text)}
+.checklist svg{width:17px;height:17px;color:var(--accent);flex:none;margin-top:3px}
+@media(max-width:700px){.checklist{grid-template-columns:1fr}}
+.model-item{padding:24px 0;border-top:1px solid var(--line)}
+.model-item:first-child{border-top:0;padding-top:0}
+.model-item h3{font-size:1.12rem;font-weight:800;letter-spacing:-.01em;color:var(--text)}
+.model-item h3 .arch{color:var(--accent);font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;vertical-align:1px}
+.model-item p{color:var(--muted);font-size:.95rem;margin-top:8px;max-width:80ch}
+.model-item p strong{color:var(--text)}
+.lead-note{color:var(--muted-light)!important}

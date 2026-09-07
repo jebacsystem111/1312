@@ -336,7 +336,7 @@ home_body = f'''
 # PODSTRONY
 # ======================================================================
 def deep(href, label, desc=""):
-    return (ABS + href, label, desc)
+    return (href, label, desc)
 
 pages = {}
 
@@ -352,11 +352,11 @@ pages["syst.zac.htm"] = page("syst.zac.htm",
   <section class="section">
     <div class="container">
       {split("assets/hero.jpg", "Elewacja budynku z roletami zewnętrznymi", "Osłony zewnętrzne",
-        f'<p>Rolety i żaluzje montowane na zewnątrz okien chronią przed upałem, hałasem i włamaniem, a jednocześnie nie zajmują miejsca we wnętrzu.</p>'
-        f'<div class="tags"><span class="tag"><a href="rolety.htm">Rolety aluminiowe</a></span><span class="tag"><a href="{ABS}zaluzjefasadowe.htm" target="_blank" rel="noopener">Żaluzje fasadowe</a></span><span class="tag"><a href="refleksole.htm">Refleksole</a></span><span class="tag"><a href="markizy.htm">Markizy</a></span></div>')}
+        '<p>Rolety i żaluzje montowane na zewnątrz okien chronią przed upałem, hałasem i włamaniem, a jednocześnie nie zajmują miejsca we wnętrzu.</p>'
+        '<div class="tags"><span class="tag"><a href="rolety.htm">Rolety aluminiowe</a></span><span class="tag"><a href="zaluzjefasadowe.htm">Żaluzje fasadowe</a></span><span class="tag"><a href="refleksole.htm">Refleksole</a></span><span class="tag"><a href="markizy.htm">Markizy</a></span></div>')}
       {split("assets/rolety-wewnetrzne.jpg", "Rolety tekstylne w jasnym wnętrzu", "Osłony wewnętrzne", 
-        f'<p>Rolety tekstylne i żaluzje wewnętrzne to najczęściej wybierana osłona okienna - ceniona za estetykę, walor dekoracyjny i skuteczną ochronę przeciwsłoneczną.</p>'
-        f'<div class="tags"><span class="tag"><a href="rolety.htm">Rolety i żaluzje</a></span><span class="tag"><a href="{ABS}impresja.htm" target="_blank" rel="noopener">System dzień-noc</a></span><span class="tag"><a href="moskitiery.htm">Moskitiery</a></span></div>', flip=True)}
+        '<p>Rolety tekstylne i żaluzje wewnętrzne to najczęściej wybierana osłona okienna - ceniona za estetykę, walor dekoracyjny i skuteczną ochronę przeciwsłoneczną.</p>'
+        '<div class="tags"><span class="tag"><a href="rolety.htm">Rolety i żaluzje</a></span><span class="tag"><a href="impresja.htm">System dzień-noc</a></span><span class="tag"><a href="moskitiery.htm">Moskitiery</a></span></div>', flip=True)}
     </div>
   </section>
   <section class="section section-alt">
@@ -688,6 +688,11 @@ pages["kontakt.html"] = page("kontakt.html",
       </div>
     </div>
   </section>''', cta=False)
+
+# ---------------------------------------------------------------- strony szczegółowe
+# Strony 2. poziomu (nadpisujące oryginalne podstrony serwisu) definiuje
+# moduł details.py - wykonujemy go w tej samej przestrzeni nazw.
+exec(open(os.path.join(os.path.dirname(__file__), "details.py"), encoding="utf-8").read())
 
 # ---------------------------------------------------------------- zapis
 # str.gl.htm zostaje jako przekierowanie na nową stronę główną index.html
