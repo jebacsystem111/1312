@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220" viewBox="0 0 640 220" role="img" aria-label="ROLTAR - rolety okienne, bramy i osłony">
+  <defs>
+    <linearGradient id="gRed" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e03a3a"/>
+      <stop offset="1" stop-color="#b21e1e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- tło -->
+  <rect x="0" y="0" width="640" height="220" rx="18" fill="#15181d"/>
+  <rect x="1" y="1" width="638" height="218" rx="17" fill="none" stroke="#2a2f37" stroke-width="2"/>
+
+  <!-- żaluzja jako znak graficzny -->
+  <g transform="translate(56,44)">
+    <!-- liny -->
+    <line x1="24" y1="-4" x2="24" y2="138" stroke="#8b93a1" stroke-width="4"/>
+    <line x1="72" y1="-4" x2="72" y2="138" stroke="#8b93a1" stroke-width="4"/>
+    <!-- lamele -->
+    <g fill="none" stroke="#c8cdd6" stroke-width="10" stroke-linecap="round">
+      <line x1="8" y1="16" x2="88" y2="16"/>
+      <line x1="8" y1="44" x2="88" y2="44"/>
+      <line x1="8" y1="72" x2="88" y2="72"/>
+      <line x1="8" y1="100" x2="88" y2="100"/>
+    </g>
+    <!-- dolna listwa -->
+    <rect x="4" y="126" width="88" height="14" rx="7" fill="url(#gRed)"/>
+  </g>
+
+  <!-- tekst ROLTAR -->
+  <text x="168" y="120" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="86" letter-spacing="7" fill="#f5f7fa">ROL<text x="400" y="120" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="86" letter-spacing="7" fill="url(#gRed)">TAR</text></text>
+  <text x="172" y="160" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="22" letter-spacing="8" fill="#9aa3b0">ROLETY OKIENNE I BRAMY</text>
+
+  <!-- podkreślenie -->
+  <rect x="170" y="178" width="290" height="4" rx="2" fill="url(#gRed)"/>
+</svg>
