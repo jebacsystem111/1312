@@ -30,7 +30,7 @@ I = {
 
 # ---------------------------------------------------------------- nawigacja
 NAV = [
-    ("str.gl.htm", "Strona główna"),
+    ("index.html", "Strona główna"),
     ("syst.zac.htm", "Osłony okienne"),
     ("rolety.htm", "Rolety-Żaluzje"),
     ("bramy.htm", "Bramy"),
@@ -92,7 +92,7 @@ def page(filename, title, desc, active, body, cta=True):
 <!-- ===== nagłówek ===== -->
 <header class="topbar">
   <div class="container">
-    <a class="brand" href="str.gl.htm" aria-label="ROLTAR, strona główna">
+    <a class="brand" href="index.html" aria-label="ROLTAR, strona główna">
       {logo_img()}
     </a>
     <div class="top-contact">
@@ -194,7 +194,7 @@ def page_hero(crumb, h1, lead=""):
     return f'''
   <section class="page-hero">
     <div class="container">
-      <nav class="crumb" aria-label="Okruszki"><a href="str.gl.htm">Strona główna</a>{I["chev"]}<span>{crumb}</span></nav>
+      <nav class="crumb" aria-label="Okruszki"><a href="index.html">Strona główna</a>{I["chev"]}<span>{crumb}</span></nav>
       <h1>{h1}</h1>
       {lead_html}
     </div>
@@ -340,10 +340,10 @@ def deep(href, label, desc=""):
 
 pages = {}
 
-pages["str.gl.htm"] = page("str.gl.htm",
+pages["index.html"] = page("index.html",
     "ROLTAR Tarnów - rolety okienne, bramy, markizy, moskitiery | Osłony okienne od 1999 roku",
     "Firma ROLTAR z Tarnowa: produkcja, sprzedaż i montaż rolet zewnętrznych i wewnętrznych, bram garażowych, krat rolowanych, markiz, refleksoli, moskitier i folii okiennych. Gwarancja 24 miesiące.",
-    "str.gl.htm", home_body, cta=False)
+    "index.html", home_body, cta=False)
 
 pages["syst.zac.htm"] = page("syst.zac.htm",
     "Systemy osłon okiennych - ROLTAR Tarnów",
@@ -690,15 +690,17 @@ pages["kontakt.html"] = page("kontakt.html",
   </section>''', cta=False)
 
 # ---------------------------------------------------------------- zapis
-INDEX = """<!DOCTYPE html>
+# str.gl.htm zostaje jako przekierowanie na nową stronę główną index.html
+# (dla starych odnośników prowadzących bezpośrednio do str.gl.htm)
+STUB = """<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=str.gl.htm">
+<meta http-equiv="refresh" content="0; url=index.html">
 <title>ROLTAR - strona główna</title>
 </head>
 <body>
-<p><a href="str.gl.htm">Przejdź do strony ROLTAR</a></p>
+<p><a href="index.html">Przejdź do strony ROLTAR</a></p>
 </body>
 </html>
 """
@@ -708,9 +710,9 @@ def main():
         with open(os.path.join(BASE, fname), "w", encoding="utf-8") as f:
             f.write(html)
         print("zapisano", fname, len(html), "B")
-    with open(os.path.join(BASE, "index.html"), "w", encoding="utf-8") as f:
-        f.write(INDEX)
-    print("zapisano index.html")
+    with open(os.path.join(BASE, "str.gl.htm"), "w", encoding="utf-8") as f:
+        f.write(STUB)
+    print("zapisano str.gl.htm (przekierowanie na index.html)")
 
 if __name__ == "__main__":
     main()

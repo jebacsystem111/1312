@@ -13,7 +13,8 @@ repozytorium (`emilskills/`, `gust/`, `impeccableskills/`).
 
 | Plik | Strona |
 |---|---|
-| `str.gl.htm` | Strona główna (skrócona, z kafelkami kategorii) |
+| `index.html` | **Strona główna** (skrócona, z kafelkami kategorii; ładowana automatycznie po wejściu na domenę) |
+| `str.gl.htm` | Przekierowanie na `index.html` (dla starych odnośników) |
 | `syst.zac.htm` | Systemy osłon okiennych (zewnętrzne / wewnętrzne) |
 | `rolety.htm` | Rolety i żaluzje |
 | `bramy.htm` | Bramy |
@@ -50,10 +51,11 @@ repozytorium (`emilskills/`, `gust/`, `impeccableskills/`).
 ## Wdrożenie na serwer (FTP)
 
 1. Zrób kopię zapasową katalogu na serwerze.
-2. Wgraj pliki `str.gl.htm`, `syst.zac.htm`, `rolety.htm`, `bramy.htm`,
+2. Wgraj pliki `index.html`, `syst.zac.htm`, `rolety.htm`, `bramy.htm`,
    `kraty.htm`, `markizy.htm`, `refleksole.htm`, `napedy.htm`, `moskitiery.htm`,
-   `folie.htm`, `roltar.htm`, `kontakt.html` do katalogu głównego serwisu
-   (zastępując obecne pliki o tych samych nazwach).
+   `folie.htm`, `roltar.htm`, `kontakt.html`, `str.gl.htm` do katalogu głównego
+   serwisu (zastępując obecne pliki o tych samych nazwach - `index.html` jako
+   strona główna będzie wyświetlany automatycznie po wejściu na domenę).
 3. Wgraj katalog `assets/` obok plików (nowy katalog - nie koliduje).
 4. NIE nadpisuj `logo2.jpg` ani pozostałych oryginalnych plików, do których
    serwis się odwołuje.
