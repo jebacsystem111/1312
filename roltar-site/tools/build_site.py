@@ -3,15 +3,13 @@
 """
 ROLTAR - generator odświeżonego serwisu (wielostronicowego).
 Uruchomienie:  python3 tools/build_site.py   (z katalogu roltar-site/)
-Wspólny szablon (topbar/nav/stopka) + treść poszczególnych podstron.
-Linki "szczegółowe" (głębokie, nieodświeżone strony oryginału) prowadzą
-bezwzględnie na serwer www.roltar.in.tarnow.pl.
+Wspólny szablon (topbar/nav/stopka) + treści stron głównych.
+Strony szczegółowe (nadpisujące oryginalne podstrony) definiuje moduł
+tools/details.py, ładowany przez exec tuż przed zapisem.
 """
 import os
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ABS = "http://www.roltar.in.tarnow.pl/"
-SITE = "http://www.roltar.in.tarnow.pl/"
 
 # ---------------------------------------------------------------- ikony SVG
 I = {
