@@ -21,8 +21,9 @@ agents. The main entry points are:
 
 - `emilskills/skills/*/SKILL.md`
 - `gust/skills/*/SKILL.md`
-- `impeccableskills/skill/SKILL.md` (canonical copy; per-agent mirrors live in
-  `.claude/`, `.codex/`, `.gemini/`, … inside `impeccableskills/`)
+- `impeccableskills/skill/SKILL.src.md` (canonical source; compiled per-agent
+  copies live in `.claude/skills/impeccable/SKILL.md`, `.codex/`, `.gemini/`,
+  … inside `impeccableskills/`)
 
 Point the agent at the relevant `SKILL.md` (or the folder) before designing a
 website so it applies the collection's rules.
