@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizza Expert Bytów — menu i dowóz</title>
+  <meta name="description" content="Pizza Expert Bytów. Pizza, makarony, sałatki, zapiekanki i napoje z dowozem na terenie Bytowa. Zamów: 720 888 858." />
+  <meta name="theme-color" content="#7a1f12" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23E7B96A'/%3E%3Cpath d='M16 3 L29 27 H3 Z' fill='%23F4D58D'/%3E%3Ccircle cx='13' cy='14' r='1.7' fill='%23B23A1E'/%3E%3Ccircle cx='19' cy='16' r='1.7' fill='%23B23A1E'/%3E%3Ccircle cx='15' cy='20' r='1.7' fill='%233E6B35'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do menu</a>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Pizza Expert Bytów — strona główna">
+        <img class="brand-logo" src="logo.png" alt="Logo Pizza Expert Bytów" width="42" height="42" />
+        <span class="brand-text">Pizza Expert<small>Bytów</small></span>
+      </a>
+      <a class="btn btn-call" href="tel:+48720888858"><span aria-hidden="true">📞</span> 720 888 858</a>
+    </div>
+  </header>
+  <nav class="catnav" aria-label="Kategorie menu"><div class="container catnav-inner"><a class="cat-chip" href="pizza.html">Pizza</a><a class="cat-chip" href="makarony.html">Makarony</a><a class="cat-chip" href="makarony-z-pieca.html">Makarony z pieca</a><a class="cat-chip" href="salad.html">Sałatki</a><a class="cat-chip" href="cos-innego.html">Coś innego</a><a class="cat-chip" href="zapiekanki.html">Zapiekanki</a><a class="cat-chip" href="napoje.html">Napoje</a><a class="cat-chip" href="informacje.html">Informacje</a></div></nav>
+  <main id="main">
+    <section class="hero" aria-labelledby="htitle">
+      <div class="container hero-inner">
+        <p class="hero-kicker">🍕 Pizzeria w Bytowie</p>
+        <h1 id="htitle" class="hero-title">Pizza Expert</h1>
+        <p class="hero-sub">W każdej pizzy bazą jest sos pomidorowy i ser.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+48720888858">Zadzwoń i zamów</a>
+          <a class="btn btn-ghost" href="pizza.html">Zobacz menu</a>
+        </div>
+      </div>
+    </section>
+    <section class="facts"><div class="container facts-inner">
+      <div class="fact">Dowóz już od <span>30 zł</span></div>
+      <div class="fact">Dziś otwarte: <span id="today-hours">11:00–22:00</span></div>
+      <div class="fact">Ul. <span>Dworcowa 15</span>, Bytów</div>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="section-head"><h2 class="section-title">Menu</h2><p class="section-lead">Wybierz kategorię. Każda ma własną stronę.</p></div>
+      <ul class="cat-grid"><a class="cat-card" href="pizza.html"><span class="cat-card-title">Pizza</span><span class="cat-card-lead">Świeże ciasto, sos pomidorowy i mozzarella. 24 / 32 / 40 cm.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="makarony.html"><span class="cat-card-title">Makarony</span><span class="cat-card-lead">Świeżo gotowane, z autorskim sosem.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="makarony-z-pieca.html"><span class="cat-card-title">Makarony z pieca</span><span class="cat-card-lead">Zapiekane pod serwem, podane gorące.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="salad.html"><span class="cat-card-title">Sałatki</span><span class="cat-card-lead">Z grzanką — od Cezara po grecką.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="cos-innego.html"><span class="cat-card-title">Coś innego</span><span class="cat-card-lead">Dania główne, przekąski i dodatki.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="zapiekanki.html"><span class="cat-card-title">Zapiekanki</span><span class="cat-card-lead">Na chrupiącej bagietce, z serem.</span><span class="cat-card-go">Zobacz menu →</span></a><a class="cat-card" href="napoje.html"><span class="cat-card-title">Napoje</span><span class="cat-card-lead">Zimne, gorące i na rozgrzewkę.</span><span class="cat-card-go">Zobacz menu →</span></a></ul>
+  <div class="delivery" style="margin-top:2rem"><p class="delivery-min">Dowozy realizujemy od <strong>30 zł</strong>.</p>
+    <ul class="delivery-rates"><li><span class="rate-place">Na terenie Bytowa</span><span class="rate-price">3 zł</span></li>
+    <li><span class="rate-place">Poza miastem</span><span class="rate-price">3,50 zł / km</span></li></ul></div>
+  <p class="hours-link">Pełny harmonogram godzin otwarcia — strona <a href="informacje.html">Informacje</a>.</p>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">Pizza Expert <span>Bytów</span></p>
+      <p class="footer-meta">Ul. Dworcowa 15 · 77-100 Bytów · <a href="tel:+48720888858" style="color:inherit">720 888 858</a></p>
+      <p class="footer-copy">© <span id="year">2026</span> Pizza Expert Bytów. Wszystkie prawa zastrzeżone.</p>
+      <a class="footer-top" href="#top">Powrót na górę ↑</a>
+    </div>
+  </footer>
+  <script src="script.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Pizza Expert",
+  "alternateName": "Pizza Expert Bytów",
+  "telephone": "+48720888858",
+  "priceRange": "$$",
+  "servesCuisine": ["Włoska", "Pizza"],
+  "address": { "@type": "PostalAddress", "streetAddress": "Dworcowa 15", "addressLocality": "Bytów", "postalCode": "77-100", "addressCountry": "PL" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 54.1657416, "longitude": 17.4867423 },
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"11:00","closes":"22:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"11:00","closes":"23:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"12:00","closes":"22:00"}
+  ]
+}
+</script>
+</body>
+</html>
